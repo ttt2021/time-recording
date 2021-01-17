@@ -1,0 +1,36 @@
+<!-- templates/login.wxml 登录 -->
+
+<template name="login">
+
+	<!-- 未登录 -->
+	<block wx:if="{{!isLogin}}">
+		<button
+		 class="loginBtn"
+		 open-type="getUserInfo"
+		 bindgetuserinfo="getUserInfo"
+		>
+			<view class="loginInfo">
+				<!-- 头像 -->
+				<image class="avatar" src="../../images/gravatar.png" />
+				<!-- 昵称 -->
+				<view class="username">
+					<text>请点击登录</text>
+				</view>
+			</view>
+		</button>
+	</block>
+
+	<!-- 登录 -->
+	<block wx:else>
+		<view class="loginInfo">
+			<!-- 头像 -->
+			<image class="avatar" src="{{userInfo.avatarUrl}}" />
+			<!-- 昵称 -->
+			<view class="username">
+				<text>{{userInfo.nickName}}</text>
+			</view>
+		</view>
+	</block>
+
+</template>
+

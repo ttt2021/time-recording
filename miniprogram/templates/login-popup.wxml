@@ -1,0 +1,18 @@
+<!-- templates/login-popup.wxml 未登录时弹出层 -->
+
+<import src="./login.wxml" />
+
+<template name="login-popup">
+	<view class="popup-contant {{show ? 'popup-show' : ''}}">
+		<!-- 遮罩层 -->
+		<view class="popup-maskLayer" bindtap="closeLoginPopup"></view>
+
+		<!-- 弹出的内容 -->
+		<view class="login-popup-container">
+			<view class="login-popup-wrapper">
+				<template is="login" data="{{userInfo: userInfo, isLogin: isLogin}}"></template>
+			</view>
+		</view>
+	</view>
+</template>
+

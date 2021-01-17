@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    const self = this
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -14,6 +15,50 @@ App({
       })
     }
 
-    this.globalData = {}
-  }
+    wx.getSystemInfo({ // 获取系统信息
+      success: e => {
+        // this.globalData.StatusBar = e.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect(); // 获取菜单按钮（右上角胶囊按钮）的布局位置信息
+        // self.globalData.Custom = custom;
+        // self.globalData.Width =e. screenWidth;
+        // self.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+      }
+    })
+
+    // 查看是否授权登录
+    // wx.getSetting({
+    //   success(settingRes) {
+    //     // console.log(settingRes);
+    //     // 应经授权
+    //     if (settingRes.authSetting['scope.userInfo']) {
+    //       wx.getUserInfo({ // 获取用户信息
+    //         success(infoRes) {
+    //           console.log(infoRes);
+    //           self.globalData.userInfo = infoRes.userInfo
+    //           // 调用云函数
+    //           wx.cloud.callFunction({
+    //             name: 'userInfo',
+    //             data: {
+    //               avatarUrl: infoRes.userInfo.avatarUrl,
+    //               name: '',
+    //               nickName: infoRes.userInfo.nickName,
+    //               sex: infoRes.userInfo.gender
+    //             }
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       wx.redirectTo({
+    //         url: `pages/me/me?back=${options.path.split('/')[1]}`
+    //       })
+    //     }
+    //   }
+    // })
+
+    // let userinfoLogs = wx.getStorageSync('userinfoLogs') || []
+
+    self.globalData = {
+
+    }
+  },
 })

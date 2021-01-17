@@ -1,18 +1,34 @@
 <!--miniprogram/pages/me/me.wxml-->
+
+<import src="../../templates/login-popup.wxml" />
+
 <view class="container">
 
 	<!-- 获取头像 昵称-->
-	<view class="userinfo">
-		<!-- 获取头像 -->
+	<view class="userinfo" wx:if="{{app.globalData.userInfo}}">
+		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+	</view>
+	<view class="userinfo" wx:else>
+		<button
+		 class="userinfo-btn"
+		 bindtap="showLogin"
+		 disabled="{{isDisabled}}"
+		>
+			<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" />
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</button>
+	</view>
+
+	<!--<view class="userinfo">
 		<view class="avatar">
 			<open-data type="userAvatarUrl"></open-data>
 		</view>
 
-		<!-- 获取昵称 -->
 		<view class="nickname">
-			<open-data class="" type="userNickName"></open-data>
+			<open-data type="userNickName"></open-data>
 		</view>
-	</view>
+	</view>-->
 
 	<!-- 栏目 -->
 	<view class="contant">
@@ -164,5 +180,7 @@
 		</view>
 
 	</view>
+
+	<template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo, isLogin: isLogin}}"></template>
 </view>
 

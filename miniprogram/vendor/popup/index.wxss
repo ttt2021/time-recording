@@ -1,0 +1,53 @@
+.popup-contant {
+  visibility: hidden;
+}
+
+.popup-show {
+  visibility: visible;
+}
+
+.popup-maskLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .7);
+  /* display: none; */
+}
+
+.login-popup-container {
+  border-radius: 20rpx;
+  width: 80%;
+  padding: 20rpx 0;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  opacity: 1;
+  /* opacity: 0; */
+  /* transition:all .5s ease; */
+}
+
+/* .popup-show .login-popup-container {
+  opacity: 1;
+} */
+
+.popup-show .popup-maskLayer {
+  display: block;
+} 
+
+.loginInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.loginInfo .avatar {
+  height: 120rpx;
+  width: 120rpx;
+  margin-right: 20rpx;
+}
