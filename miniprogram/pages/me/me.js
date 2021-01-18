@@ -47,6 +47,7 @@ Page({
 				latestLogin: new Date()
 			}
 		}).then(res => {
+			console.log(res)
 			// console.log(res.result.userinfos.data[0])
 			const userinfos = res.result.userinfos.data[0]
 			if (res.errMsg === 'cloud.callFunction:ok') { // 云函数调用成功
@@ -77,6 +78,22 @@ Page({
 		})
 	},
 
+	//切换页面
+  go: function (e) {
+    var e = e.currentTarget.dataset.to;
+    wx.navigateTo({
+      url: e,
+    })
+	},
+	
+	// 赞赏作者
+	likeImg: function() {
+		let rewordImg = 'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3eab93d695f46dca799fea1ad631260~tplv-k3u1fbpfcp-watermark.image'
+		wx.previewImage({
+			urls: rewordImg.split(",")
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -91,7 +108,11 @@ Page({
 		const self = this
 
 		// 从本地存储中获取数据
-		let userinfoLogs = wx.getStorageSync('userinfoLogs')
+		// let userinfoLogs = wx.getStorageSync('userinfoLogs')
+
+		// 从全局上获取本地存储挂载的数据
+		// console.log(app)
+		let userinfoLogs = app.globalData.userInfo
 		// console.log(userinfoLogs, userinfoLogs.length)
 		if (userinfoLogs.length === 0) { // 若本地无存储
 			self.setData({
@@ -101,7 +122,7 @@ Page({
 				}
 			})
 		} else { // 本地已存储
-			
+
 			self.setData({
 				userInfo: {
 					avatarUrl: userinfoLogs[0].avatarUrl,
@@ -113,16 +134,25 @@ Page({
 			})
 
 			// console.log(userinfoLogs[0]._id);
+			// 查询数据库信息
+			// db.collection('usersinfo').doc(userinfoLogs[0]._id).get().then(res => {
+			// 	console.log(res)
+			// })
+
 			// 更新数据库最新登录信息
-			db.collection('usersinfo').doc(userinfoLogs[0]._id).update({
-				data: {
-					latestLogin: new Date()
-				}
+			wx.cloud.callFunction({
+				name: 'userinfo',
+				data: {}
 			}).then(res => {
-				console.log(res)
+				// console.log(res)
+				const userinfos = res.result.userinfos.data[0]
+				if (res.errMsg === 'cloud.callFunction:ok') { // 云函数调用成功
+					// 若登录成功则将用户信息挂载到app.globalData上
+					app.globalData.userInfo = userinfos
+					// 用户信息存储到本地存储
+					wx.setStorageSync('userinfoLogs', [userinfos])
+				}
 			})
-			// // 数据挂载全局
-			// app.globalData.userInfo = userinfoLogs
 		}
 
 	},
@@ -131,7 +161,7 @@ Page({
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-		
+
 	},
 
 	/**

@@ -1,0 +1,25 @@
+<!--miniprogram/pages/user/updated/updated.wxml  更新日志 -->
+<view class="updated-container">
+
+	<timeline contants="{{updatedContant}}"></timeline>
+
+	<!--<view class="timeline">
+		<view class="line"></view>
+		<view class="dot">
+			<image class="timeline-doc" src="../../../images/circle.png" />
+		</view>
+		<view class="contant">
+			<view class="contantWrapper">
+				<view class="contant-sign">
+					<view class="contant-version">v1.0.0</view>
+					<view class="contant-time">2021/1/31</view>
+				</view>
+				<view class="contant-wrapper">
+					<view>1.0.0 版本上线</view>
+				</view>
+			</view>
+		</view>
+	</view>-->
+
+</view>
+

@@ -15,8 +15,13 @@ App({
       })
     }
 
+    // 调用API从本地缓存中获取数据，并将其挂载到全局上
+    let userinfoLogs = wx.getStorageSync('userinfoLogs') || []
+    self.globalData.userInfo = userinfoLogs
+
     wx.getSystemInfo({ // 获取系统信息
       success: e => {
+        // console.log(e)
         // this.globalData.StatusBar = e.statusBarHeight;
         let custom = wx.getMenuButtonBoundingClientRect(); // 获取菜单按钮（右上角胶囊按钮）的布局位置信息
         // self.globalData.Custom = custom;
@@ -57,8 +62,9 @@ App({
 
     // let userinfoLogs = wx.getStorageSync('userinfoLogs') || []
 
-    self.globalData = {
-
-    }
   },
+
+  globalData: {
+
+  }
 })

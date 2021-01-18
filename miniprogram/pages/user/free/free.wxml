@@ -1,0 +1,57 @@
+<!--miniprogram/pages/user/free/free.wxml-->
+<view class="container">
+	<view class="contant">
+		<view class="useState contant-section">
+			<view class="title">使用申明</view>
+			<view class="content">本小程序源码已经完全开源，禁止任何形式的商业使用！！！</view>
+		</view>
+		<view class="development contant-section">
+			<view class="title">开发环境</view>
+			<view class="content">本程序由原生的小程序开发，数据库存储及相关函数处理是借助小程序云开发的功能。</view>
+		</view>
+		<view class="support contant-section">
+			<view class="title">组件支持</view>
+			<view
+			 class="content"
+			 bindtap='copy'
+			 data-copy="https://youzan.github.io/vant-weapp"
+			>
+				Vant Weapp：
+				<text class="copySrc">https://youzan.github.io/vant-weapp</text>
+			</view>
+			<view
+			 class="content"
+			 bindtap='copy'
+			 data-copy="https://www.layui.com/doc"
+			>
+				Layui：
+				<text class="copySrc">https://www.layui.com/doc</text>
+			</view>
+		</view>
+		<view class="openSource contant-section">
+			<view class="title">开源相关</view>
+			<view class="content">本小程序源码已发布在Github上。</view>
+			<view
+			 class="content"
+			 bindtap='copy'
+			 data-copy="https://youzan.github.io/vant-weapp"
+			>
+				地址：
+				<text class="copySrc">https://github.com/ttt2021/time-recording</text>
+			</view>
+		</view>
+		<view class="feedback contant-section">
+			<view class="title">问题反馈</view>
+			<view class="content">
+				<view>若本小程序有任何问题都可以联系本人进行反馈。</view>
+				<view bindtap='copy' data-copy="2815313941">QQ：
+					<text class="copySrc">2815313941</text>
+				</view>
+				<view bindtap='copy' data-copy="wxid_dq3157pcmmy722">微信：
+					<text class="copySrc">wxid_dq3157pcmmy722</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+

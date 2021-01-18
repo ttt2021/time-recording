@@ -38,12 +38,13 @@ exports.main = async (event, context) => {
 				name: '',
 				openId: event.userInfo.openId,
 				createTime: new Date(),
-				latestLogin: new Date()
+				latestLogin: new Date(),
+				isAdmin: false
 			}
 		})
 		// 获取插入后的信息
 		userinfos = await db.collection('usersinfo').where({
-			openId: insertResult._id
+			_id: insertResult._id
 		}).get()
 	}
 

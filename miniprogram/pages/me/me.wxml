@@ -133,7 +133,7 @@
 		</view>
 
 		<!-- 赞赏作者 -->
-		<view class="reward contant-column" bindtap="bindtap='likeImg">
+		<view class="reward contant-column" bindtap="likeImg">
 			<view class="contant-icon">
 				<image class="img" src="../../images/reward.png" />
 				<view class="contant-title">
@@ -146,15 +146,30 @@
 		</view>
 
 		<!-- 意见反馈 -->
+		<view class="consultation">
+			<button class="btn contant-column" open-type="feedback">
+				<view class="contant-icon">
+					<image class="img" src="../../images/feedback.png" />
+					<view class="contant-title">
+						<text class="title">意见反馈</text>
+					</view>
+				</view>
+				<view class="contant-arrow btn-arrow">
+					<image class="arrow" src="../../images/arrow-right.png" />
+				</view>
+			</button>
+		</view>
+
+		<!-- 免费获取 -->
 		<view
-		 class="feedback contant-column"
+		 class="updated contant-column"
 		 bindtap="go"
-		 data-to="/pages/user/feedback/feedback"
+		 data-to="/pages/user/free/free"
 		>
 			<view class="contant-icon">
-				<image class="img" src="../../images/feedback.png" />
+				<image class="img" src="../../images/free.png" />
 				<view class="contant-title">
-					<text class="title">意见反馈</text>
+					<text class="title">免费获取</text>
 				</view>
 			</view>
 			<view class="contant-arrow">
@@ -179,8 +194,26 @@
 			</view>
 		</view>
 
+		<!-- 若为管理员 -->
+		<view
+		 class="hot contant-column"
+		 bindtap="go"
+		 data-to="/pages/admin/home/home"
+		 wx:if="{{!userInfo.isAdmin}}"
+		>
+			<view class="contant-icon">
+				<image class="img" src="../../images/home.png" />
+				<view class="contant-title">
+					<text class="title">后台管理</text>
+				</view>
+			</view>
+			<view class="contant-arrow">
+				<image class="arrow" src="../../images/arrow-right.png" />
+			</view>
+		</view>
 	</view>
 
-	<template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo, isLogin: isLogin}}"></template>
 </view>
+
+<template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo, isLogin: isLogin}}"></template>
 

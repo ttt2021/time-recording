@@ -1,0 +1,26 @@
+/* miniprogram/pages/user/free/free.wxss */
+/* .contant {
+  border: 1px solid #000;
+  margin: 0 30rpx;
+} */
+
+.contant-section {
+  /* border: 1px solid #000; */
+  margin: 30rpx;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+  color: #A5D63F;
+}
+
+.content {
+  font-size: 28rpx;
+  color: #888888;
+}
+
+.copySrc {
+  color: #0099ff;
+}

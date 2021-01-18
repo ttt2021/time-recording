@@ -1,0 +1,28 @@
+<!--components/timeline/timeline.wxml-->
+<view
+ class="updated-container"
+ wx:for="{{contants}}"
+ wx:key="index"
+>
+
+	<!-- 每一个日志 -->
+	<view class="timeline">
+		<view class="line"></view>
+		<view class="dot">
+			<image class="timeline-doc" src="{{docSrc}}" />
+		</view>
+		<view class="contant">
+			<view class="contantWrapper">
+				<view class="contant-sign">
+					<view class="contant-version">{{item.version}}</view>
+					<view class="contant-time">{{item.time}}</view>
+				</view>
+				<view class="contant-wrapper">
+					<view wx:for="{{item.content}}" wx:key="itemIndex">{{item}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>
+

@@ -1,11 +1,13 @@
 /* miniprogram/pages/me/me.wxss */
 @import '../../vendor/popup/index.wxss';
 
-/* .container {
-  background:#FFFFF0;
-} */
+.container {
+  /* background:#FFFFF0; */
+  overflow-x: hidden;
+}
 
 .userinfo {
+  position: fixed;
   background: #A5D63F;
   background-size: cover;
   height: 300rpx;
@@ -36,7 +38,8 @@
 }
 
 .contant {
-  margin-top: 30rpx;
+  /* margin-top: 30rpx; */
+  padding-top: 300rpx;
   width: 100%;
   background:#FFFFF0;
 }
@@ -79,10 +82,19 @@
 }
 
 .btn-arrow {
+  width: 28%;
   padding-top: 20rpx;
+  /* margin-left: -50rpx; */
 }
 
-.userinfo-btn {
+/* .consultation .btn {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+} */
+
+.userinfo-btn, .consultation .btn {
   /* background-color: #A5D63F; */
   width: 100%;
   border: 0;

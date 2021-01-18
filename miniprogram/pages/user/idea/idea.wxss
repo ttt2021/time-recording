@@ -1,0 +1,72 @@
+/* miniprogram/pages/user/idea/idea.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+
+.asideLeft {
+  background-color: #FFFACD;
+  text-align: center;
+  color: #999999;
+  width: 400rpx;
+  height: 100vh;
+  /* height: 100%; */
+  overflow-y: hidden;
+}
+
+.asideLeft .listItem {
+  line-height: 100rpx;
+  font-size: 24rpx;
+}
+
+.active {
+  background-color: #FFC125;
+  color: #fff;
+}
+
+.asideRight {
+  /* padding: 0 30rpx; */
+  height: 100vh;
+}
+
+.right-section {
+  margin-bottom: 40rpx;
+}
+
+.title {
+  background: #FFF68F;
+  text-align: center;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.contant {
+  padding: 20rpx 5rpx 0 30rpx;
+}
+
+.contant-listItem {
+  font-size: 32rpx;
+  color: #999999;
+  line-height: 50rpx;
+  display: flex;
+}
+
+.contant-icon {
+  margin-top: 5rpx;
+}
+
+.contant-img {
+  width: 30rpx;
+  height: 30rpx;
+}

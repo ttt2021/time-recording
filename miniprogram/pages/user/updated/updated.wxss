@@ -1,0 +1,76 @@
+/* miniprogram/pages/user/updated/updated.wxss */
+
+.updated-container {
+  overflow-x: hidden;
+}
+
+/* .updated-container > .timeline {
+  width: 100%;
+  position: relative;
+  display: block;
+  text-align: justify;
+  word-break: break-all;
+  padding-left: 50rpx;
+  padding-right: 40rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+}
+
+.updated-container .line, .updated-container > .activeLine {
+  position: absolute;
+  left: 40rpx;
+  width: 4rpx;
+  height: 100%;
+  background-color: #dddddd;
+}
+
+.updated-container .dot {
+  z-index: 100;
+  display: inline-block;
+  position: absolute;
+  left: 30rpx;
+  margin-top: 50rpx;
+  top: 0;
+}
+
+.timeline-doc {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.updated-container > .timeline > .contant {
+  padding: 30rpx 40rpx;
+  margin-right: 40rpx;
+}
+
+.contantWrapper {
+  background: #A5D63F;
+  border-radius: 10rpx;
+}
+
+.contant-sign, .contant-wrapper {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.contant-sign {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  font-size: 24rpx;
+}
+
+.contant-version {
+  padding: 10rpx;
+  color:  #A5D63F;
+  background: #ffffff;
+}
+
+.contant-time {
+  padding: 10rpx;
+  border: 1px solid #ffffff;
+}
+
+.contant-wrapper {
+  padding-bottom: 30rpx;
+} */

@@ -1,0 +1,55 @@
+<!--miniprogram/pages/user/idea/idea.wxml-->
+
+<!-- 实现左右联动的效果 -->
+<view class="container">
+
+	<!-- 左侧 -->
+	<scroll-view
+	 class="asideLeft"
+	 scroll-y="true"
+	 scroll-with-animation="true"
+	 scroll-top="{{itemLeftToTop}}"
+	>
+		<view
+		 class="listItem {{tabCur === index ? 'active' : ''}}"
+		 wx:for="{{list}}"
+		 wx:key="index"
+		 data-index="{{index}}"
+		 bindtap="tabNav"
+		>
+			{{item.itemName}}
+		</view>
+	</scroll-view>
+
+	<!-- 右侧 -->
+	<scroll-view
+	 class="asideRight"
+	 scroll-y="true"
+	 scroll-with-animation="true"
+	 scroll-into-view="scroll-{{rightCur}}"
+	 bindscroll="scrollList"
+	>
+		<view
+		 class="right-section"
+		 wx:for="{{list}}"
+		 wx:key="index"
+		 id="scroll-{{index}}"
+		>
+			<view class="title">{{item.itemName}}</view>
+			<view class="contant">
+				<view
+				 class="contant-listItem"
+				 wx:for="{{item.list}}"
+				 wx:key="itemIndex"
+				>
+					<view class="contant-icon">
+						<image class="contant-img" src="../../../images/dot.png" />
+					</view>
+					<view class="contant-wrapper">{{item}}</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+</view>
+
