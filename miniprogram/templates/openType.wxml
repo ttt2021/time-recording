@@ -1,0 +1,18 @@
+<!-- 按钮栏目 -->
+
+<template name="btnMenuItem">
+	<view class="consultation">
+		<button class="btn contant-column" open-type="{{item.opentype}}">
+			<view class="contant-icon">
+				<image class="img" src="{{item.icon}}" />
+				<view class="contant-title">
+					<text class="title">{{item.title}}</text>
+				</view>
+			</view>
+			<view class="contant-arrow btn-arrow">
+				<image class="arrow" src="../../images/arrow-right.png" />
+			</view>
+		</button>
+	</view>
+</template>
+

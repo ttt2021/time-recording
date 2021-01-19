@@ -1,0 +1,9 @@
+<!-- 页面底部 -->
+
+<template name="footer">
+	<view class="footer-wrapper">
+		<view class="footer-contant">© 2021 御剑版权所有</view>
+		<view class="footer-contant">鹰击天风壮，鹏飞海浪春</view>
+	</view>
+</template>
+

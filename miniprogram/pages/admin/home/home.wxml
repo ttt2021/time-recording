@@ -1,2 +1,15 @@
 <!--miniprogram/pages/admin/home/home.wxml-->
-<text>miniprogram/pages/admin/home/home.wxml</text>
+<import src="../../../templates/meMenu.wxml" />
+<import src="../../../templates/footer.wxml" />
+
+<view class="home-container">
+	<view class="contant">
+
+		<!-- 新增文章 -->
+		<template is="menuItem" data="{{item: listItems.addArticle, arrowSrc: arrowSrc}}"></template>
+
+	</view>
+
+	<template is="footer"></template>
+</view>
+

@@ -1,0 +1,20 @@
+<!-- 每一个栏目 -->
+
+<template name='menuItem'>
+	<view
+	 class="{{item.className}} contant-column"
+	 bindtap="{{item.bindTab}}"
+	 data-to="{{item.goPage}}"
+	>
+		<view class="contant-icon">
+			<image class="img" src="{{item.icon}}" />
+			<view class="contant-title">
+				<text class="title">{{item.title}}</text>
+			</view>
+		</view>
+		<view class="contant-arrow">
+			<image class="arrow" src="{{arrowSrc}}" />
+		</view>
+	</view>
+</template>
+

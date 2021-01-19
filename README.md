@@ -67,6 +67,7 @@
         - 利用微信小程序API wx.setClipboardData
       4.10 更新日志 (仿layui框架的时间轴)
         - 将每个日志信息做成组件的形式
+      4.11 后台管理
 
     注意：
       1. 将底部横向滚动条隐藏起来 overflow-x: hidden;

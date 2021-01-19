@@ -1,5 +1,7 @@
 /* miniprogram/pages/me/me.wxss */
 @import '../../vendor/popup/index.wxss';
+@import '../../vendor/meMenu/index.wxss';
+@import '../../vendor/footer/index.wxss';
 
 .container {
   /* background:#FFFFF0; */
@@ -23,6 +25,13 @@
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
+.userinfo-btn {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+}
+
 .userinfo-avatar {
   height: 120rpx;
   width: 120rpx;
@@ -37,71 +46,6 @@
   color: #fff;
 }
 
-.contant {
-  /* margin-top: 30rpx; */
-  padding-top: 300rpx;
-  width: 100%;
-  background:#FFFFF0;
-}
-
-.contant-column {
-  height: 100rpx;
-  /* padding-top: 30rpx; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #F8F8FF
-  ;
-  /* border: 1px solid #000; */
-  margin: 0 40rpx;
-}
-
-.contant-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contant-title {
-  margin-left: 10rpx;
-  font-size: 30rpx;
-}
-
-.img, .arrow {
-  height: 50rpx;
-  width: 50rpx;
-}
-
-.btn {
-  padding: 0;
-  margin: 0 40rpx;
-  outline: 0;
-  border: 0;
-  /* border: 1px solid #000; */
-  font-size: 30rpx;
-}
-
-.btn-arrow {
-  width: 28%;
-  padding-top: 20rpx;
-  /* margin-left: -50rpx; */
-}
-
-/* .consultation .btn {
-  width: 100%;
-  border: 0;
-  background-color: transparent;
-  outline: none;
-} */
-
-.userinfo-btn, .consultation .btn {
-  /* background-color: #A5D63F; */
-  width: 100%;
-  border: 0;
-  background-color: transparent;
-  outline: none;
-}
-
 button[disabled] {
   background-color: #A5D63F !important;
 }
@@ -113,4 +57,12 @@ button[disabled] {
 
 .userinfo-btn .userinfo-nickname {
   display: block;
+}
+
+.contant {
+  /* margin-top: 30rpx; */
+  padding-top: 300rpx;
+  /* position: fixed; */
+  width: 100%;
+  background:#FFFFF0;
 }

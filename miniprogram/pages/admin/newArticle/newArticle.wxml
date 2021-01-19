@@ -1,0 +1,116 @@
+<!--miniprogram/pages/admin/newArticle/newArticle.wxml-->
+<view class="article-container">
+	<view class="article-title input-contant">
+		<view class="title-wrapper">标题</view>
+		<view class="title-content">
+			<input
+			 type="text"
+			 placeholder="限制最多输入50个字"
+			 value="{{title}}"
+			 bindinput="titleInput"
+			 maxlength="50"
+			/>
+		</view>
+	</view>
+
+	<view class="article-desc input-contant">
+		<view class="title-wrapper">描述</view>
+		<view class="desc-content">
+			<textarea
+			 value="{{desc}}"
+			 bindinput="descInput"
+			 placeholder="限制最多输入150个字"
+			 maxlength="150"
+			></textarea>
+		</view>
+	</view>
+
+	<view class="article-category input-contant">
+		<view class="title-wrapper">类别</view>
+		<view class="category-contant">
+			<picker
+			 bindchange="kindChange"
+			 range="{{kindList}}"
+			 range-key="kindName"
+			>
+				<view class="picker">
+					<view class="picker-content">{{kind}}</view>
+					<view class="picker-arrow">
+						<image class="arrow-right" src="../../../images/arrow-right.png" />
+					</view>
+				</view>
+			</picker>
+		</view>
+	</view>
+
+	<view class="article-cover input-contant">
+		<view class="title-wrapper" wx:if="{{cover===''}}">封面图</view>
+		<view
+		 class="title-wrapper"
+		 bindtap="chooseImg"
+		 wx:else
+		>重新上传
+		</view>
+		<view class="cover-icon">
+			<image
+			 class="coverImg"
+			 wx:if="{{cover===''}}"
+			 src="../../../images/add.png"
+			 bindtap="chooseImg"
+			/>
+			<image
+			 class="coverImg"
+			 src="{{cover}}"
+			 bindtap="previewImg"
+			 data-img="{{cover}}"
+			 wx:else
+			/>
+		</view>
+	</view>
+
+	<view class="content-wrapper">
+		<view class="article-contant input-contant">
+			<view class="title-wrapper">内容</view>
+			<view class="parse-btn">
+				<button class="btn" bindtap="parse">粘贴</button>
+			</view>
+		</view>
+		<view class="input-container input-contant" hidden='{{preContent}}'>
+			<textarea
+			 value="{{content}}"
+			 placeholder="直接输入或复制编辑好的html或markdown"
+			 bindinput='contentInput'
+			 maxlength="-1"
+			></textarea>
+		</view>
+	</view>
+
+	<view class="html" wx:if="{{content}}">
+		<view class="show">预览</view>
+		<view class="show-wrapper">
+			<mp-html
+			 html="{{content}}"
+			 show-with-animation
+			 animation-duration="500"
+			 img-mode="widthFix"
+			></mp-html>
+		</view>
+	</view>
+
+	<view class="btn-wrapper">
+		<button
+		 class="saveBtn"
+		 bindtap='check'
+		 data-target="save"
+		>保存
+		</button>
+		<button
+		 class="publishBtn"
+		 bindtap='check'
+		 data-target="publish"
+		>发布
+		</button>
+	</view>
+
+</view>
+

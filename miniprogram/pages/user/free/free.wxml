@@ -27,6 +27,14 @@
 				Layui：
 				<text class="copySrc">https://www.layui.com/doc</text>
 			</view>
+			<view
+			 class="content"
+			 bindtap='copy'
+			 data-copy="https://github.com/jin-yufeng/Parser"
+			>
+				Parser富文本：
+				<text class="copySrc">https://github.com/jin-yufeng/Parser</text>
+			</view>
 		</view>
 		<view class="openSource contant-section">
 			<view class="title">开源相关</view>

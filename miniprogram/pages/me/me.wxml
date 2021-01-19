@@ -1,6 +1,9 @@
 <!--miniprogram/pages/me/me.wxml-->
 
 <import src="../../templates/login-popup.wxml" />
+<import src="../../templates/meMenu.wxml" />
+<import src="../../templates/openType.wxml" />
+<import src="../../templates/footer.wxml" />
 
 <view class="container">
 
@@ -32,8 +35,8 @@
 
 	<!-- 栏目 -->
 	<view class="contant">
-		<!-- 热门排行 -->
-		<view
+
+		<!--<view
 		 class="hot contant-column"
 		 bindtap="go"
 		 data-to="/pages/user/hot/hot"
@@ -47,78 +50,27 @@
 			<view class="contant-arrow">
 				<image class="arrow" src="../../images/arrow-right.png" />
 			</view>
-		</view>
+		</view>-->
+
+		<!-- 热门排行 -->
+		<template is="menuItem" data="{{item: menuItems.hot, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 最近浏览 -->
-		<view
-		 class="browse contant-column"
-		 bindtap="go"
-		 data-to="/pages/user/browse/browse"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/footer.png" />
-				<view class="contant-title">
-					<text class="title">最近浏览</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.browse, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 我的收藏 -->
-		<view
-		 class="collection contant-column"
-		 bindtap="go"
-		 data-to="/pages/user/collection/collection"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/collection.png" />
-				<view class="contant-title">
-					<text class="title">我的收藏</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.collection, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 留言展板 -->
-		<view
-		 class="message contant-column"
-		 bindtap="go"
-		 data-to="/pages/user/message/message"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/message.png" />
-				<view class="contant-title">
-					<text class="title">留言展板</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.message, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 大前端技能栈 -->
-		<view
-		 class="idea contant-column"
-		 bindtap="go"
-		 data-to="/pages/user/idea/idea"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/idea.png" />
-				<view class="contant-title">
-					<text class="title">大前端技能栈</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.idea, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 在线咨询 -->
-		<view class="consultation">
+		<template is="btnMenuItem" data="{{item: menuItems.consultation, arrowSrc: arrowSrc}}"></template>
+
+		<!--<view class="consultation">
 			<button class="btn contant-column" open-type="contact">
 				<view class="contant-icon">
 					<image class="img" src="../../images/robot.png" />
@@ -130,89 +82,29 @@
 					<image class="arrow" src="../../images/arrow-right.png" />
 				</view>
 			</button>
-		</view>
+		</view>-->
 
 		<!-- 赞赏作者 -->
-		<view class="reward contant-column" bindtap="likeImg">
-			<view class="contant-icon">
-				<image class="img" src="../../images/reward.png" />
-				<view class="contant-title">
-					<text class="title">赞赏作者</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.reward, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 意见反馈 -->
-		<view class="consultation">
-			<button class="btn contant-column" open-type="feedback">
-				<view class="contant-icon">
-					<image class="img" src="../../images/feedback.png" />
-					<view class="contant-title">
-						<text class="title">意见反馈</text>
-					</view>
-				</view>
-				<view class="contant-arrow btn-arrow">
-					<image class="arrow" src="../../images/arrow-right.png" />
-				</view>
-			</button>
-		</view>
+		<template is="btnMenuItem" data="{{item: menuItems.feedback, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 免费获取 -->
-		<view
-		 class="updated contant-column"
-		 bindtap="go"
-		 data-to="/pages/user/free/free"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/free.png" />
-				<view class="contant-title">
-					<text class="title">免费获取</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.free, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 更新日志 -->
-		<view
-		 class="updated contant-column"
-		 bindtap="go"
-		 data-to="/pages/user/updated/updated"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/journal.png" />
-				<view class="contant-title">
-					<text class="title">更新日志</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		<template is="menuItem" data="{{item: menuItems.updated, arrowSrc: arrowSrc}}"></template>
 
 		<!-- 若为管理员 -->
-		<view
-		 class="hot contant-column"
-		 bindtap="go"
-		 data-to="/pages/admin/home/home"
+		<template
+		 is="menuItem"
+		 data="{{item: menuItems.admin, arrowSrc: arrowSrc}}"
 		 wx:if="{{!userInfo.isAdmin}}"
-		>
-			<view class="contant-icon">
-				<image class="img" src="../../images/home.png" />
-				<view class="contant-title">
-					<text class="title">后台管理</text>
-				</view>
-			</view>
-			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
-			</view>
-		</view>
+		></template>
 	</view>
 
+	<template is="footer"></template>
 </view>
 
 <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo, isLogin: isLogin}}"></template>

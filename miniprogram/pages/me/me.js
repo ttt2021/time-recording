@@ -1,7 +1,7 @@
 // miniprogram/pages/me/me.js
 const app = getApp();
 const db = wx.cloud.database();
-// const auth = require('../../utils/auth.js');
+import meMenu from '../../api/meMenu'
 Page({
 
 	/**
@@ -12,7 +12,9 @@ Page({
 		// openid: '',
 		isLoginPopup: true, // 遮罩层是否显示
 		isLogin: false, // 是否登录
-		isDisabled: false // 按钮是否禁用
+		isDisabled: false, // 按钮是否禁用
+		menuItems: meMenu,
+		arrowSrc: '../../images/arrow-right.png'
 	},
 
 	closeLoginPopup() {
@@ -98,6 +100,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		console.log(this.data.menuItems)
 		wx.setNavigationBarTitle({
 			title: '我的个人中心',
 			success: function (res) {
