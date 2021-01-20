@@ -25,7 +25,7 @@ exports.main = async (event, context) => {
 				nickName: event.nickName,
 				sex: event.sex,
 				visitCounts: event.visitCounts + 1,
-				dayVisitList: _.push([date]),
+				dayVisitList: _.push(date),
 				latestLogin: date
 			}
 		})

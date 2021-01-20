@@ -81,15 +81,15 @@ Page({
 	},
 
 	//切换页面
-  go: function (e) {
-    var e = e.currentTarget.dataset.to;
-    wx.navigateTo({
-      url: e,
-    })
+	go: function (e) {
+		var e = e.currentTarget.dataset.to;
+		wx.navigateTo({
+			url: e,
+		})
 	},
-	
+
 	// 赞赏作者
-	likeImg: function() {
+	likeImg: function () {
 		let rewordImg = 'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3eab93d695f46dca799fea1ad631260~tplv-k3u1fbpfcp-watermark.image'
 		wx.previewImage({
 			urls: rewordImg.split(",")
@@ -154,7 +154,18 @@ Page({
 			// 更新数据库最新登录信息
 			wx.cloud.callFunction({
 				name: 'userinfo',
-				data: {}
+				data: {
+					avatarUrl: userinfoLogs[0].avatarUrl,
+					nickName: userinfoLogs[0].nickName,
+					sex: userinfoLogs[0].sex,
+					name: userinfoLogs[0].name,
+					openId: userinfoLogs[0].openId,
+					visitCounts: userinfoLogs[0].visitCounts,
+					dayVisitList: userinfoLogs[0].dayVisitList,
+					createTime: userinfoLogs[0].createTime,
+					latestLogin: userinfoLogs[0].latestLogin,
+					isAdmin: userinfoLogs[0].isAdmin
+				}
 			}).then(res => {
 				console.log(res)
 				const userinfos = res.result.userinfos.data[0]
