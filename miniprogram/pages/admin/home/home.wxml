@@ -8,6 +8,9 @@
 		<!-- 新增文章 -->
 		<template is="menuItem" data="{{item: listItems.addArticle, arrowSrc: arrowSrc}}"></template>
 
+		<!-- 人员管理 -->
+		<template is="menuItem" data="{{item: listItems.people, arrowSrc: arrowSrc}}"></template>
+
 	</view>
 
 	<template is="footer"></template>

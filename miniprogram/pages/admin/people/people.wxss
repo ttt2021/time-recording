@@ -1,0 +1,122 @@
+/* miniprogram/pages/admin/people/people.wxss */
+
+/* 页面渐变色 */
+.people-container {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #A5D63F), color-stop(1, #ffffff));
+}
+
+.people-static {
+  /* border: 1px solid #000; */
+  margin: 40rpx 30rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 15rpx 10rpx;
+  font-size: 26rpx;
+  color: #A5D63F;
+}
+
+.section-title {
+  margin-bottom: 20rpx;
+  /* font-weight: bold; */
+}
+
+.total-contant {
+  margin: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rx;
+  text-align: center;
+}
+
+.section-chart {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-month {
+  display: flex;
+}
+
+.title-month .title {
+  margin-right: 20rpx;
+}
+
+.section-chart .arrow {
+  display: flex;
+}
+
+.section-chart .arrow-left {
+  margin-right: 20rpx;
+}
+
+.section-chart .arrow .arrow-image {
+  height: 32rpx;
+  width: 32rpx;
+}
+
+.newPeople-canvase {
+  /* border: 1px solid #000; */
+  padding: 10rpx;
+}
+
+.canvas {
+  width: 100%;
+  height: 400rpx;
+}
+
+.view-record {
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.record {
+  padding: 10rpx 25rpx;
+  /* border: 1px solid #000; */
+  background: #e0ffff;
+  border-radius: 50rpx;
+}
+
+.peopleInfos-wrapper {
+  border: 1px solid #dddddd;
+  border-radius: 10rpx;
+  margin: 30rpx 20rpx 5rpx 15rpx;
+  padding: 20rpx;
+  box-shadow: 10rpx 10rpx 5rpx #ffffcc;
+}
+
+.infos-wrapper {
+  display: flex;
+}
+
+.people-avatar .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.id-nickname {
+  margin-left: 30rpx;
+}
+
+.people-id {
+  margin: 15rpx 0;
+}
+
+.info {
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.isadmin-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.isadmin-updated {
+  display: flex;
+  color: #ffcc00;
+}
+
+.isadmin-set {
+  margin-right: 30rpx;
+}

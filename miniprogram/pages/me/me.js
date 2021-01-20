@@ -1,6 +1,5 @@
 // miniprogram/pages/me/me.js
 const app = getApp();
-const db = wx.cloud.database();
 import meMenu from '../../api/meMenu'
 Page({
 
@@ -46,7 +45,8 @@ Page({
 				name: '',
 				nickName: e.detail.userInfo.nickName,
 				sex: e.detail.userInfo.gender,
-				latestLogin: new Date()
+				visitCounts: 1,
+				dayVisitList: [new Date()] // 存储所有的登录记录
 			}
 		}).then(res => {
 			console.log(res)
@@ -100,6 +100,15 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		// console.log("2021-01-15T12:32:50.406Z".split('T')[0])
+		// //转成毫秒数
+		// const start_date = Date.parse("2021-01-15T12:32:50.406Z");
+		// const end_date = Date.parse(new Date()) // 返回该日期与 1970 年 1 月 1 日午夜之间相差的毫秒数
+		// // 两个日期相减，转换成天数
+		// let days = parseInt((end_date - start_date) / (1000 * 60 * 60 *24))
+		// if (days < 0)
+		// 	days = Math.abs(days) + 1
+		// console.log("day = ",start_date, end_date, new Date(), days);
 		console.log(this.data.menuItems)
 		wx.setNavigationBarTitle({
 			title: '我的个人中心',
@@ -116,7 +125,7 @@ Page({
 		// 从全局上获取本地存储挂载的数据
 		// console.log(app)
 		let userinfoLogs = app.globalData.userInfo
-		// console.log(userinfoLogs, userinfoLogs.length)
+		// console.log(userinfoLogs)
 		if (userinfoLogs.length === 0) { // 若本地无存储
 			self.setData({
 				userInfo: {
@@ -147,7 +156,7 @@ Page({
 				name: 'userinfo',
 				data: {}
 			}).then(res => {
-				// console.log(res)
+				console.log(res)
 				const userinfos = res.result.userinfos.data[0]
 				if (res.errMsg === 'cloud.callFunction:ok') { // 云函数调用成功
 					// 若登录成功则将用户信息挂载到app.globalData上

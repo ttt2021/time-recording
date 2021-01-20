@@ -50,8 +50,10 @@
       4.4 留言展板 
       4.5 在线咨询 
         - 使用button按钮的open-type属性的contact
+
       4.6 赞赏作者
         - 调用微信小程序的API wx.previewImage在新页面中全屏预览图片
+
       4.7 大前端技能栈
         - 实现左右联动的效果
           - 利用 scroll-view 将页面分为左右两块，并分别利用 bindscroll 绑定滚动事件
@@ -60,14 +62,44 @@
             - 先拿到该栏目的高度设置它的 top 和 buttom 的值
             - 判断滑动的距离是否大于设置的 top 但小于设定的 buttom 值
             - 然后对应上左边的菜单的滑动
+
       4.8 意见反馈
         - 使用button按钮的open-type属性的feedback
+
       4.9 免费获取
         - 主要是设置系统剪贴板的内容，即复制功能的实现
         - 利用微信小程序API wx.setClipboardData
+
       4.10 更新日志 (仿layui框架的时间轴)
         - 将每个日志信息做成组件的形式
+
       4.11 后台管理
+        - 跳转到后台管理系统
+
+  5. 后台管理系统
+    菜单栏
+      - 新增文章
+        - 跳转到写文章的界面
+          1. 标题 input type = 'text' maxlength
+          2. 描述 textarea maxlength
+          3. 类别 picker 
+            - 所有类别 kindList 存入数据库kind中
+            - 默认为首个kindList的名称 
+          4. 封面图 cover
+            - 若 cover 为空，则为首次上传，图标显示默认图片
+            - 点击默认图标，可以从相册中选取一张图片，通过绑定事件获取到图片的地址 wx.chooseImage
+            - 若 cover 已存在图片，可以对图片进行预览 wx.previewImage ，并且点击重新上传，也可以重新上传图片
+          5. 内容
+            - 可以粘贴剪切板上的内容 wx.getClipboardData
+            - 也可以直接在文本框中输入内容 不设置其文本长度，其 maxlength 属性需要设置为 -1
+            - 内容可以是 html 也可以是 markdown 形式的
+            - 引用 Parser 的富文本，用其来将内容进行预览
+          6. 保存 或 发布 
+            - 首先需要对文章要素进行校验
+            - 校验结束后，先将封面图传入云存储中 wx.cloud.uploadFile
+            - 封面图传入成功后，将文章信息添加到数据库中
+            - 添加成功后，回调函数返回文章的 id
+            - 利用 id 和是否发布的标志 isPublish ，调用API wx.showModal 进行页面的跳转
 
     注意：
       1. 将底部横向滚动条隐藏起来 overflow-x: hidden;

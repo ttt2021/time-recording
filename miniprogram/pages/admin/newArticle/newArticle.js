@@ -79,6 +79,7 @@ Page({
 		})
 	},
 
+	// 对文章要素进行校验
 	check: function (e) {
 		// console.log(e)
 		// console.log(e.currentTarget.dataset.target)
@@ -110,6 +111,7 @@ Page({
 		}
 	},
 
+	// 将封面图传入云存储中
 	upload: function () {
 		// console.log(e)
 		const that = this
@@ -129,6 +131,7 @@ Page({
 		})
 	},
 
+	// 文章信息添加到数据库中
 	addDb: function () {
 		const that = this
 		db.collection('articles').add({
@@ -154,15 +157,15 @@ Page({
 					content: '是否跳转到详情页',
 					success: saveRes => {
 						if (saveRes.confirm && that.data.isPublish === '1') {
-							wx.navigateTo({
+							wx.navigateTo({ // 跳转到文章详情页
 								url: `/pages/details/publish/publish?scene${article_id}`
 							})
 						} else if (saveRes.confirm && that.data.isPublish === '0') {
-							wx.navigateTo({
+							wx.navigateTo({ // 跳转到文章详情页
 								url: `/pages/details/draft/draft?scene${article_id}`
 							})
 						} else if ((saveRes.cancel && that.data.isPublish === '1') || (saveRes.cancel && that.data.isPublish === '0')) {
-							wx.navigateTo({
+							wx.navigateTo({ // 跳转到文章管理页面
 								url: `/pages/admin/home/home`
 							})
 						}

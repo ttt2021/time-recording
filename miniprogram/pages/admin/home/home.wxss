@@ -3,9 +3,10 @@
 @import '../../../vendor/footer/index.wxss';
 
 .home-container {
-  width: 100%;
+  /* width: 100%;
   height: 100vh;
-  background: #A5D63F;
+  background: #A5D63F; */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #A5D63F), color-stop(1, #ffffff));
 }
 
 .contant {

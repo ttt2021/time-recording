@@ -17,14 +17,19 @@ exports.main = async (event, context) => {
 
 	// 已经存在该用户,更新用户信息
 	if (checkUser.data.length > 0) {
+		const _ = db.command
+		const date = new Date()
 		const updatedResult = await db.collection('usersinfo').doc(checkUser.data[0]._id).update({
 			data: {
 				avatarUrl: event.avatarUrl,
 				nickName: event.nickName,
 				sex: event.sex,
-				latestLogin: new Date()
+				visitCounts: event.visitCounts + 1,
+				dayVisitList: _.push([date]),
+				latestLogin: date
 			}
 		})
+
 		// 获取修改后的信息
 		userinfos = await db.collection('usersinfo').where({
 			openId: userInfo.openId
@@ -37,6 +42,8 @@ exports.main = async (event, context) => {
 				sex: event.sex,
 				name: '',
 				openId: event.userInfo.openId,
+				visitCounts: 1,
+				dayVisitList: [new Date()],
 				createTime: new Date(),
 				latestLogin: new Date(),
 				isAdmin: false
