@@ -1,4 +1,6 @@
 <!--miniprogram/pages/admin/people/people.wxml-->
+<import src="../../../templates/endMore.wxml" />
+
 <view class="people-container">
 
 	<!-- 累计统计 -->
@@ -7,11 +9,19 @@
 		<view class="total-contant">
 			<view class="total-count">
 				<view class="count-name">总人数</view>
-				<view class="count-data">123</view>
+				<view class="count-data">{{totalPeople}}</view>
 			</view>
 			<view class="day-count">
 				<view class="count-name">日均人数</view>
-				<view class="count-data">32</view>
+				<view class="count-data">{{dayPeople}}</view>
+			</view>
+			<view class="visits-count">
+				<view class="count-name">总访问次数</view>
+				<view class="count-data">{{totalVisits}}</view>
+			</view>
+			<view class="day-visit-count">
+				<view class="count-name">日均访问次数</view>
+				<view class="count-data">{{dayAvgVisits}}</view>
 			</view>
 		</view>
 	</view>
@@ -22,12 +32,50 @@
 		<view class="total-contant">
 			<view class="total-count">
 				<view class="count-name">访问次数</view>
-				<view class="count-data">56</view>
+				<view class="count-data">{{todayVisits}}</view>
 			</view>
 			<view class="day-count">
 				<view class="count-name">新用户人数</view>
-				<view class="count-data">12</view>
+				<view class="count-data">{{todaynewPeople}}</view>
 			</view>
+		</view>
+	</view>
+
+	<!-- 月度访问人数分布 -->
+	<view class="newPeople-wrapper people-static">
+		<view class="section-title section-chart">
+			<view class="title-month">
+				<view class="title">月度访问次数分布</view>
+				<view class="month">{{visitMonth}}</view>
+			</view>
+			<view class="arrow">
+				<view
+				 class="arrow-left"
+				 bindtap="preMonth"
+				 data-to="visits"
+				>
+					<image class="arrow-image" src="../../../images/arrow-left.png" />
+				</view>
+				<view
+				 class="arrow-right"
+				 bindtap="nextMonth"
+				 data-to="visits"
+				>
+					<image class="arrow-image" src="../../../images/arrow-right.png" />
+				</view>
+			</view>
+		</view>
+		<view class="newPeople-canvase">
+			<canvas
+			 canvas-id="MonthVisits"
+			 binderror="canvasIdErrorCallback"
+			 bindtouchstart="touchHandler"
+			 data-touch="visits"
+			 class="canvas"
+			></canvas>
+		</view>
+		<view class="view-record">
+			<text class="record" bindtap="go" data-to="visitRecord">查看用户访问次数记录</text>
 		</view>
 	</view>
 
@@ -36,54 +84,40 @@
 		<view class="section-title section-chart">
 			<view class="title-month">
 				<view class="title">月度新用户人数分布</view>
-				<view class="month">2020 年 01 月</view>
+				<view class="month">{{newpeopleMonth}}</view>
 			</view>
 			<view class="arrow">
-				<view class="arrow-left">
+				<view
+				 class="arrow-left"
+				 bindtap="preMonth"
+				 data-to="peopledist"
+				>
 					<image class="arrow-image" src="../../../images/arrow-left.png" />
 				</view>
-				<view class="arrow-right">
+				<view
+				 class="arrow-right"
+				 bindtap="nextMonth"
+				 data-to="peopledist"
+				>
 					<image class="arrow-image" src="../../../images/arrow-right.png" />
 				</view>
 			</view>
 		</view>
 		<view class="newPeople-canvase">
 			<canvas
-			 canvas-id="yueEle"
+			 canvas-id="dayNewpeople"
 			 binderror="canvasIdErrorCallback"
+			 bindtouchstart="touchHandler"
 			 class="canvas"
+			 data-touch="newpeople"
 			></canvas>
 		</view>
-		<view class="view-record">
+		<view
+		 class="view-record"
+		 bindtap="go"
+		 data-to="newPeopleRecord"
+		>
 			<text class="record">查看新用户记录</text>
-		</view>
-	</view>
-
-	<!-- 月度访问人数分布 -->
-	<view class="newPeople-wrapper people-static">
-		<view class="section-title section-chart">
-			<view class="title-month">
-				<view class="title">月度访问人数分布</view>
-				<view class="month">2020 年 01 月</view>
-			</view>
-			<view class="arrow">
-				<view class="arrow-left">
-					<image class="arrow-image" src="../../../images/arrow-left.png" />
-				</view>
-				<view class="arrow-right">
-					<image class="arrow-image" src="../../../images/arrow-right.png" />
-				</view>
-			</view>
-		</view>
-		<view class="newPeople-canvase">
-			<canvas
-			 canvas-id="yueEle"
-			 binderror="canvasIdErrorCallback"
-			 class="canvas"
-			></canvas>
-		</view>
-		<view class="view-record">
-			<text class="record">查看访问人数记录</text>
 		</view>
 	</view>
 
@@ -91,31 +125,55 @@
 	<view class="people-infos people-static">
 		<view class="section-title section-chart">
 			<view class="all-title">所有用户信息</view>
-			<view class="all-search">搜索</view>
-		</view>
-		<view class="peopleInfos-wrapper">
-			<view class="infos-wrapper">
-				<view class="people-avatar">
-					<image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/7nULdT9goEtyPVeyJocFlaNYYkSfIxq40icWOgpzJfEI4S4ialN5sq9x69jNofvqJuJxmdIw9Bvcu3zCuuOr737w/132" />
-				</view>
-				<view class="id-nickname">
-					<view class="people-id">用户id：123</view>
-					<view class="people-nickname">昵称：歆潼</view>
-				</view>
-			</view>
-			<view class="people-openId info">用户openID：123464</view>
-			<view class="pepole-sex info">性别：女</view>
-			<view class="pepole-sex info">访问次数：30</view>
-			<view class="joinTime info">加入时间：2021-1-20 15:23:31</view>
-			<view class="latest info">最近登录时间：2021-1-20 18:23:31</view>
-			<view class="isadmin-wrapper">
-				<view class="isadmin">管理员：是</view>
-				<view class="isadmin-updated">
-					<view class="isadmin-set">设置管理员</view>
-					<view class="isadmin-canel">取消</view>
-				</view>
+			<view
+			 class="all-search"
+			 bindtap="go"
+			 data-to="search"
+			>搜索
 			</view>
 		</view>
+		<block wx:for="{{list}}" wx:key="index">
+			<block wx:for="{{item}}" wx:key="item_index">
+				<view class="peopleInfos-wrapper">
+					<view class="infos-wrapper">
+						<view class="people-avatar">
+							<image class="avatar" src="{{item.avatarUrl}}" />
+						</view>
+						<view class="id-nickname">
+							<view class="people-nickname">昵称：歆潼</view>
+						</view>
+					</view>
+					<view class="people-id info">用户id：{{item._id}}</view>
+					<view class="people-openId info">用户openID：{{item.openId}}</view>
+					<view class="pepole-sex info">性别：{{item.sex}}</view>
+					<view class="pepole-sex info">访问次数：{{item.visitCounts}}</view>
+					<view class="joinTime info">加入时间：{{item.createTime}}</view>
+					<view class="latest info">最近登录时间：{{item.latestLogin}}</view>
+					<view class="isadmin-wrapper">
+						<view class="isadmin">管理员：{{item.isAdmin}}</view>
+						<view class="isadmin-updated">
+							<view
+							 class="isadmin-set"
+							 bindtap="setAdmin"
+							 data-set="true"
+							 data-id="{{item._id}}"
+							>设置管理员
+							</view>
+							<view
+							 class="isadmin-canel"
+							 bindtap="setAdmin"
+							 data-set="false"
+							 data-id="{{item._id}}"
+							>取消
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</block>
 	</view>
+
+	<template is="endMore" wx:if="{{noMore}}"></template>
+
 </view>
 

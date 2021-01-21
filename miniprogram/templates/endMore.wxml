@@ -1,0 +1,6 @@
+<!-- 加载更多结束后 -->
+
+<template name="endMore">
+	<view class="footer-message">没有更多了哦~~~</view>
+</template>
+

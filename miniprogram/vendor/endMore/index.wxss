@@ -1,0 +1,8 @@
+.footer-message {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  color: #999999;
+  text-align: center;
+  margin-bottom: 30rpx;
+}

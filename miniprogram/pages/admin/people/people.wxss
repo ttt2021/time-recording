@@ -1,5 +1,7 @@
 /* miniprogram/pages/admin/people/people.wxss */
 
+@import '../../../vendor/endMore/index.wxss';
+
 /* 页面渐变色 */
 .people-container {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #A5D63F), color-stop(1, #ffffff));
@@ -89,8 +91,8 @@
 }
 
 .people-avatar .avatar {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
 }
 
@@ -98,8 +100,15 @@
   margin-left: 30rpx;
 }
 
-.people-id {
-  margin: 15rpx 0;
+.people-nickname {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.people-id, .people-openId {
+  overflow:hidden; /* 超出一行文字自动隐藏 */
+  text-overflow:ellipsis;/* 文字隐藏后添加省略号 */
+  white-space:nowrap; /* 强制不换行 */
 }
 
 .info {
