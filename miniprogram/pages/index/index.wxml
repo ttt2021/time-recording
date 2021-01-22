@@ -1,2 +1,81 @@
 <!--miniprogram/pages/index/index.wxml-->
-<text>miniprogram/pages/index/index.wxml</text>
+<view class="container">
+
+	<view class="header-container">
+		<!-- 轮播 -->
+		<view class="lunbo-container">
+			<swiper
+			 class="lunbo-swiper"
+			 indicator-dots="{{indicatorDots}}"
+			 interval="{{interval}}"
+			 autoplay="{{autoplay}}"
+			 indicator-color="{{indicatorColor}}"
+			 indicator-active-color="{{indicatorActiveColor}}"
+			 circular="{{circular}}"
+			 duration="{{duration}}"
+			>
+				<block wx:for="{{img}}" wx:key="imgIndex">
+					<swiper-item class="swiperItem">
+						<image
+						 class="pic"
+						 mode="aspectFill"
+						 src="{{item.image}}"
+						/>
+						<view class="swiper-desc">
+							<text>{{item.title}}</text>
+						</view>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+
+		<!-- 搜索 -->
+		<view class="search-container">
+			<view class="search-wrapper">
+				<view class="search-input">
+					<input
+					 type="text"
+					 placeholder="搜索感兴趣内容"
+					 confirm-type="search"
+					 bindinput='keyInput'
+					 bindconfirm='search'
+					/>
+				</view>
+				<view class="action">
+					<view class="searchBtn" bindtap="search">
+						<image class="search-icon" src="../../images/search.png" />
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 公告 -->
+		<view class="notice-container">
+			<swiper
+			 class="notice-swiper"
+			 vertical="{{vertical}}"
+			 autoplay="{{autoplay}}"
+			 circular="{{circular}}"
+			 interval="{{interval}}"
+			>
+				<block wx:for="{{noticeList}}" wx:key="index">
+					<swiper-item>
+						<van-notice-bar
+						 left-icon="volume-o"
+						 text="{{item}}"
+						 background="#ffffff"
+						 speed="{{speedValue}}"
+						/>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+	</view>
+
+	<!-- 首页内容 -->
+	<view class="contant-wrapper">
+		<articleInfo></articleInfo>
+	</view>
+
+</view>
+

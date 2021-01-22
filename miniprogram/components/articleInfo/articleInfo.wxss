@@ -1,0 +1,72 @@
+/* miniprogram/components/articleInfo/articleInfo.wxss */
+.article-container {
+  margin: 20rpx;
+  padding: 20rpx;
+  /* border: 1px solid #000; */
+  border-radius: 10rpx;
+  box-shadow: 0rpx 5rpx 15rpx #cccccc;
+  font-size: 28rpx;
+}
+
+.article-cover {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 15rpx;
+  margin-bottom: 10rpx;
+}
+
+.cover-pic {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 10rpx;
+}
+
+.article-pic {
+  z-index: 1;
+}
+
+.article-title {
+  z-index: 2;
+  margin-top: -60rpx;
+  text-align: center;
+  color: #ffffff;
+  /* font-weight: bold; */
+}
+
+.article-desc {
+  font-size: 26rpx;
+  color: #aaaaaa;
+  margin-bottom: 15rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;	/* 控制显示几行 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 40rpx;
+}
+
+.article-infos {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+}
+
+.article-kind {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.info {
+  margin-left: 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #cccccc;
+  margin-top: 5rpx;
+}

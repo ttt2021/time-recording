@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "kindList": "/components/kindList/kindList"
+  },
+  "navigationBarTitleText": "专栏"
+}

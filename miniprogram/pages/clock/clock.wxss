@@ -1,1 +1,67 @@
 /* miniprogram/pages/clock/clock.wxss */
+
+.clock-menu-wrapper {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #A5D63F;
+  position: fixed;
+  color: #ffffff;
+  padding-bottom: 10rpx;
+  z-index: 2;
+}
+
+.pic {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.name {
+  margin-left: 30rpx;
+}
+
+.collection {
+  display: flex;
+  margin-right: 30rpx;
+}
+
+.todo {
+  margin-right: 20rpx;
+}
+
+.clock-contant {
+  /* border: 1px solid #000; */
+  height: 100%;
+  width: 100%;
+  background-size:cover;
+  position: absolute;
+  background-image: url('https://i03piccdn.sogoucdn.com/db336e22fd449bcd');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.clock-wrapper {
+  margin-top: 500rpx;
+  /* overflow-x: hidden; */
+}
+
+.contant-icon {
+  width: 100%;
+  /* border: 1px solid #000; */
+  text-align: center;
+}
+
+.contant-img {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.tip {
+  text-align: center;
+  font-size: 30rpx;
+}

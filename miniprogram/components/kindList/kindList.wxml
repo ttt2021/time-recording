@@ -1,0 +1,12 @@
+<!--miniprogram/components/kindList/kindList.wxml-->
+<view class="kind-container">
+	<view class="kind-image">
+		<image class="kindImage" src="../../images/html.png" />
+	</view>
+	<view class="kind-name kind-common">
+		<view class="kindName">html</view>
+		<view class="kind-isSubscription">未订阅</view>
+	</view>
+	<view class="kind-desc kind-common">超文本标记语言</view>
+</view>
+

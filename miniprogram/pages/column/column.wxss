@@ -1,0 +1,5 @@
+/* miniprogram/pages/column/column.wxss */
+
+.column-container {
+  padding: 30rpx 40rpx 0 40rpx;
+}

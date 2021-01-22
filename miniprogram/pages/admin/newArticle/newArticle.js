@@ -1,5 +1,6 @@
 // miniprogram/pages/admin/newArticle/newArticle.js
 const db = wx.cloud.database();
+const tool = require("../../../utils/tool.js");
 
 Page({
 	/**
@@ -79,12 +80,12 @@ Page({
 		})
 	},
 
-	// 对文章要素进行校验
-	check: function (e) {
-		// console.log(e)
-		// console.log(e.currentTarget.dataset.target)
+	// 对文章要素进行校验  节流
+	check: tool.throttle(function (e) {
+		console.log(e)
+		// console.log(e[0].currentTarget.dataset.target)
 		const that = this
-		let targetNum = e.currentTarget.dataset.target === 'save' ? '0' : '1'
+		let targetNum = e[0].currentTarget.dataset.target === 'save' ? '0' : '1'
 		that.setData({
 			isPublish: targetNum
 		})
@@ -109,7 +110,7 @@ Page({
 			// 上传封面图到云存储中
 			that.upload()
 		}
-	},
+	}, 2000),
 
 	// 将封面图传入云存储中
 	upload: function () {

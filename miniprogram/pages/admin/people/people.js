@@ -1,5 +1,4 @@
 // miniprogram/pages/admin/people/people.js
-const wxCharts = require("../../../utils/wxcharts.js");
 const formatTime = require("../../../utils/formatTime.js");
 const Charts = require("../../../utils/wxcharts.js");
 let newpeopleChart = null;
@@ -407,7 +406,7 @@ Page({
 		// 获取用户列表 限制返回数量为10条
 		db.collection('usersinfo').where({}).limit(10).orderBy('createTime', 'openId').get({
 			success: res => { // 获取成功
-				console.log(res.data)
+				// console.log(res.data)
 				let result = res.data
 				for (let i = 0; i < result.length; i++) {
 					// console.log(result[i].createTime)

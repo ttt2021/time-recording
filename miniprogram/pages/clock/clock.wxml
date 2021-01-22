@@ -1,2 +1,26 @@
 <!--miniprogram/pages/clock/clock.wxml-->
-<text>miniprogram/pages/clock/clock.wxml</text>
+<view class="clock-container">
+
+	<view class="clock-menu-wrapper">
+		<view class="name">待办</view>
+		<view class="collection">
+			<view class="todo">
+				<image class="pic" src="../../images/add.png" />
+			</view>
+			<view class="record">
+				<image class="pic" src="../../images/addSet.png" />
+			</view>
+		</view>
+	</view>
+
+	<view class="clock-contant">
+		<view class="clock-wrapper">
+			<view class="contant-icon">
+				<image class="contant-img" src="../../images/notodo.png" />
+			</view>
+			<view class="tip">当前没有待办，点击右上角 + 号创建一个吧~~~</view>
+		</view>
+	</view>
+
+</view>
+

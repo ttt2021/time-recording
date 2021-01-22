@@ -1,0 +1,43 @@
+<!--miniprogram/components/articleInfo/articleInfo.wxml-->
+<view class="article-container">
+	<view class="article-cover">
+		<view class="article-pic">
+			<image class="cover-pic" src="../../images/1.jpg" />
+		</view>
+		<view class="article-title">html5有哪些新特性呢</view>
+	</view>
+	<view class="article-desc">
+		map() 创建一个新数组，其结果是该数组中每个元素都调用一个
+		提供的函数后返回的结果调用的函数callback有三个参数currentValue callback数组中正在处理的当前元素
+		index 可选，callback数组中正在处理的当前元素的索引array 可选，callback map方法被调用的数组thisArg
+		可选，执行callback函数时使用的this值
+	</view>
+	<view class="article-infos">
+		<view class="article-kind">html</view>
+		<view class="time-wrapper info">
+			<view class="time-icon">
+				<image class="timeIcon icon" src="../../images/time.png" />
+			</view>
+			<view class="time">2020-01-22</view>
+		</view>
+		<view class="comments-wrapper info">
+			<view class="comments-icon">
+				<image class="commentsIcon icon" src="../../images/comment.png" />
+			</view>
+			<view class="comments-count">2</view>
+		</view>
+		<view class="views-wrapper info">
+			<view class="views-icon">
+				<image class="viewsIcon icon" src="../../images/views.png" />
+			</view>
+			<view class="viewsCount">23</view>
+		</view>
+		<view class="likes-wrapper info">
+			<view class="likes-icon">
+				<image class="likesIcon icon" src="../../images/likes.png"></image>
+			</view>
+			<view class="likes-count">15</view>
+		</view>
+	</view>
+</view>
+

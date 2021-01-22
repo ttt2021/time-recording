@@ -1,0 +1,7 @@
+<!--miniprogram/pages/column/column.wxml-->
+<view class="column-container">
+
+	<kindList></kindList>
+
+</view>
+
