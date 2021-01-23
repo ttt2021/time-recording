@@ -23,6 +23,12 @@
   color: #ffffff;
   font-size: 30rpx;
   /* font-weight: bold; */
+  padding: 0 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;	/* 控制显示几行 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-container {
