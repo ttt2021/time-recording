@@ -120,7 +120,7 @@ Page({
 			title: '保存中...'
 		})
 		wx.cloud.uploadFile({
-			cloudPath: 'cover' + (new Date().getTime()) + '.png',
+			cloudPath: 'cover' + (new Date().getTime()),
 			filePath: that.data.cover,
 			success: res => {
 				console.log(res)
@@ -197,7 +197,7 @@ Page({
 			console.log(res)
 			that.setData({
 				kindList: res.data,
-				kind: res.data[0].kindName
+				kind: res.data[0].title
 			})
 		})
 	},
@@ -207,7 +207,7 @@ Page({
 		console.log(e)
 		const that = this
 		that.setData({
-			kind: that.data.kindList[e.detail.value].kindName
+			kind: that.data.kindList[e.detail.value].title
 		})
 	},
 

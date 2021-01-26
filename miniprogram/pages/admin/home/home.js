@@ -7,7 +7,7 @@ Page({
 	 */
 	data: {
 		listItems: homeItems,
-		arrowSrc: '../../../images/arrow-right.png'
+		arrowSrc: '../../../images/arrow-right.jpg'
 	},
 
 	go: function (e) {

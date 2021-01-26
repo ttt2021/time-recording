@@ -10,7 +10,7 @@
 				</view>
 			</view>
 			<view class="contant-arrow btn-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
+				<image class="arrow" src="../../images/arrow-right.jpg" />
 			</view>
 		</button>
 	</view>

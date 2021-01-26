@@ -1,7 +1,7 @@
 <!--miniprogram/pages/column/column.wxml-->
 <view class="column-container">
 
-	<kindList></kindList>
+	<kindList kindList="{{kindList}}" isLogin="{{isLogin}}"></kindList>
 
 </view>
 

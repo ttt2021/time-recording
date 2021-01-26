@@ -11,7 +11,7 @@
 		>
 			<view class="loginInfo">
 				<!-- 头像 -->
-				<image class="avatar" src="../../images/gravatar.png" />
+				<image class="avatar" src="../../images/gravatar.jpg" />
 				<!-- 昵称 -->
 				<view class="username">
 					<text>请点击登录</text>

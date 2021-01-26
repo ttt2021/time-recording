@@ -4,6 +4,7 @@
   /* border: 1px solid #000; */
   border-radius: 10rpx;
   box-shadow: 0rpx 5rpx 15rpx #cccccc;
+  margin-bottom: 30rpx;
 }
 
 .kindImage {
@@ -23,7 +24,7 @@
   margin-bottom: 10rpx;
 }
 
-.kindName {
+.kind-kindName {
   font-size: 32rpx;
   font-weight: bold;
 }
@@ -39,6 +40,14 @@
 
 .kind-desc {
   font-size: 26rpx;
-  padding-bottom: 20rpx;
+  padding: 20rpx 0;
   color: #888888;
+}
+
+/* .kindOrder-wrapper {
+  border: 1px solid #000;
+} */
+
+.order {
+  background: #A5D63F;
 }

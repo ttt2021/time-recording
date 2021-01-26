@@ -31,12 +31,12 @@
 			<picker
 			 bindchange="kindChange"
 			 range="{{kindList}}"
-			 range-key="kindName"
+			 range-key="title"
 			>
 				<view class="picker">
 					<view class="picker-content">{{kind}}</view>
 					<view class="picker-arrow">
-						<image class="arrow-right" src="../../../images/arrow-right.png" />
+						<image class="arrow-right" src="../../../images/arrow-right.jpg" />
 					</view>
 				</view>
 			</picker>
@@ -55,7 +55,7 @@
 			<image
 			 class="coverImg"
 			 wx:if="{{cover===''}}"
-			 src="../../../images/add.png"
+			 src="../../../images/add.jpg"
 			 bindtap="chooseImg"
 			/>
 			<image

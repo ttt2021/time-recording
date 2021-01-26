@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "articleInfo": "/components/articleInfo/articleInfo"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

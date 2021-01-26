@@ -43,7 +43,7 @@
 				 wx:key="itemIndex"
 				>
 					<view class="contant-icon">
-						<image class="contant-img" src="../../../images/dot.png" />
+						<image class="contant-img" src="../../../images/dot.jpg" />
 					</view>
 					<view class="contant-wrapper">{{item}}</view>
 				</view>

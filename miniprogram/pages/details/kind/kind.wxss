@@ -1,0 +1,67 @@
+/* miniprogram/pages/details/kind/kind.wxss */
+@import '../../../vendor/endMore/index.wxss';
+
+.kindArticle-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* 虚化分类栏目 */
+
+.kind-logo {
+  position: relative;
+  width: 100%;
+  height: 420rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.kind-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  filter: blur(10rpx);
+  background-repeat: no-repeat;
+}
+
+.kind-info {
+  position: absolute;
+  z-index: 999;
+}
+
+.kind-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.kind-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 20rpx;
+}
+
+.kind-desc {
+  color: #ffffff;
+}
+
+/* 文章 */
+
+.article-wrapper {
+  padding: 15rpx 20rpx 0 20rpx;
+}
+
+.no-articles-wrapper {
+  width: 100%;
+  margin-top: 300rpx;
+  /* border: 1px solid #000; */
+  text-align: center;
+  color: #dddddd;
+}

@@ -43,7 +43,7 @@
 				</view>
 				<view class="action">
 					<view class="searchBtn" bindtap="search">
-						<image class="search-icon" src="../../images/search.png" />
+						<image class="search-icon" src="../../images/search.jpg" />
 					</view>
 				</view>
 			</view>

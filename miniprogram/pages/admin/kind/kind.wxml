@@ -1,0 +1,106 @@
+<!--miniprogram/pages/admin/kind/kind.wxml-->
+<view class="kind-container">
+	<view
+	 class="kind-item-wrapper"
+	 wx:for="{{kindList}}"
+	 wx:key="index"
+	>
+		<view class="kind-image">
+			<image
+			 class="img"
+			 src="{{item.poster}}"
+			 lazy-load="true"
+			/>
+		</view>
+		<view class="kind-title kind-common">{{item.title}}</view>
+		<view class="kind-desc kind-common">{{item.desc}}</view>
+		<view class="kind-btn kind-common">
+			<button
+			 class="delete-btn btn"
+			 data-kind='{{item}}'
+			 bindtap="del"
+			 hover-class="btn-hover"
+			>删除
+			</button>
+			<button
+			 class="detail-btn btn"
+			 data-detail='{{item}}'
+			 bindtap="goList"
+			 hover-class="btn-hover"
+			>查看相关内容
+			</button>
+		</view>
+	</view>
+</view>
+
+<view class="add-kind-wrapper">
+	<button
+	 class="add-btn btn"
+	 bindtap="showModal"
+	 hover-class="btn-hover"
+	>增加分类
+	</button>
+</view>
+
+<view
+ class="addKind-contant-container"
+ hidden='{{addModel}}'
+ catchtouchmove="true"
+>
+	<view class="contant-container">
+		<view class="wrapper-title">新增分类</view>
+		<view class="contant-title-wrapper wrapper">
+			<view class="contant-title">分类标题</view>
+			<view class="contant-input">
+				<input
+				 type="text"
+				 placeholder="仅支持最多15个字"
+				 value='{{title}}'
+				 bindinput='titleInput'
+				 maxlength='15'
+				/>
+			</view>
+		</view>
+		<view class="contant-desc wrapper">
+			<view class="contant-title">分类描述</view>
+			<view class="contant-input">
+				<input
+				 type="text"
+				 placeholder="仅支持最多20个字"
+				 value='{{desc}}'
+				 bindinput='descInput'
+				 maxlength='20'
+				/>
+			</view>
+		</view>
+		<view class="kind-cover wrapper">
+			<view class="contant-title" wx:if="{{poster===''}}">封面图</view>
+			<view
+			 class="contant-title"
+			 bindtap="chooseImg"
+			 wx:else
+			>重新上传
+			</view>
+			<view class="cover-icon">
+				<image
+				 class="coverImg"
+				 wx:if="{{poster===''}}"
+				 src="../../../images/add.jpg"
+				 bindtap="chooseImg"
+				/>
+				<image
+				 class="coverImg"
+				 src="{{poster}}"
+				 bindtap="previewImg"
+				 data-img="{{poster}}"
+				 wx:else
+				/>
+			</view>
+		</view>
+		<view class="addCommit-wrapper wrapper">
+			<view class="canel-btn commit-btn" bindtap="hideModal">取消</view>
+			<view class="addKind-btn commit-btn" bindtap="add">添加</view>
+		</view>
+	</view>
+</view>
+

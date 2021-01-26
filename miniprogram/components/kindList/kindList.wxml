@@ -1,12 +1,50 @@
 <!--miniprogram/components/kindList/kindList.wxml-->
-<view class="kind-container">
-	<view class="kind-image">
-		<image class="kindImage" src="../../images/html.png" />
+<view
+ class="kind-container {{kindClick}}"
+ wx:for="{{kindList}}"
+ wx:key="index"
+>
+	<view
+	 class="kind-image"
+	 bindtap="go"
+	 data-title="{{item.title}}"
+	>
+		<image
+		 class="kindImage"
+		 src="{{item.poster}}"
+		 lazy-load="true"
+		/>
 	</view>
 	<view class="kind-name kind-common">
-		<view class="kindName">html</view>
-		<view class="kind-isSubscription">未订阅</view>
+		<view
+		 class="kindName"
+		 bindtap="go"
+		 data-title="{{item.title}}"
+		>
+			<view class="kind-kindName">{{item.title}}</view>
+			<view class="kind-desc">{{item.desc}}</view>
+		</view>
+		<view class="kindOrder-wrapper">
+			<block wx:if="{{isLogin}}">
+				<view
+				 class="kind-isSubscription"
+				 bindtap="order"
+				 data-kind="{{item}}"
+				 wx:if="{{!item.isOrder}}"
+				>未订阅
+				</view>
+				<view
+				 class="kind-isSubscription order"
+				 data-kind="{{item}}"
+				 bindtap="order"
+				 wx:if="{{item.isOrder}}"
+				>已订阅
+				</view>
+			</block>
+			<block wx:if="{{!isLogin}}">
+				<view class="kind-isSubscription" bindtap="login">未订阅</view>
+			</block>
+		</view>
 	</view>
-	<view class="kind-desc kind-common">超文本标记语言</view>
 </view>
 

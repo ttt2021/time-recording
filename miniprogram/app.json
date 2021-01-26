@@ -1,20 +1,23 @@
 {
     "pages": [
-        "pages/index/index",
-        "pages/clock/clock",
+        "pages/admin/home/home",
         "pages/column/column",
+        "pages/details/kind/kind",
+        "pages/index/index",
+        "pages/admin/kind/kind",
+        "pages/clock/clock",
         "pages/me/me",
         "pages/ask/ask",
         "pages/user/updated/updated",
         "pages/user/free/free",
         "pages/user/idea/idea",
-        "pages/admin/home/home",
         "pages/admin/newArticle/newArticle",
         "pages/admin/people/people",
         "pages/details/publish/publish",
         "pages/details/draft/draft",
         "components/kindList/kindList",
-        "components/articleInfo/articleInfo"
+        "components/articleInfo/articleInfo",
+        "pages/admin/articles/articles"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
@@ -31,32 +34,32 @@
         "list": [
             {
                 "pagePath": "pages/index/index",
-                "iconPath": "images/index.png",
-                "selectedIconPath": "images/index-selected.png",
+                "iconPath": "images/index.jpg",
+                "selectedIconPath": "images/index-selected.jpg",
                 "text": "首页"
             },
             {
                 "pagePath": "pages/column/column",
-                "iconPath": "images/column.png",
-                "selectedIconPath": "images/column-selected.png",
+                "iconPath": "images/column.jpg",
+                "selectedIconPath": "images/column-selected.jpg",
                 "text": "专栏"
             },
             {
                 "pagePath": "pages/clock/clock",
-                "iconPath": "images/clock.png",
-                "selectedIconPath": "images/clock-selected.png",
+                "iconPath": "images/clock.jpg",
+                "selectedIconPath": "images/clock-selected.jpg",
                 "text": "时钟"
             },
             {
                 "pagePath": "pages/ask/ask",
-                "iconPath": "images/ask.png",
-                "selectedIconPath": "images/ask-selected.png",
+                "iconPath": "images/ask.jpg",
+                "selectedIconPath": "images/ask-selected.jpg",
                 "text": "寻问"
             },
             {
                 "pagePath": "pages/me/me",
-                "iconPath": "images/me.png",
-                "selectedIconPath": "images/me-selected.png",
+                "iconPath": "images/me.jpg",
+                "selectedIconPath": "images/me-selected.jpg",
                 "text": "我的"
             }
         ]

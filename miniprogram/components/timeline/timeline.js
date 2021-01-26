@@ -17,7 +17,7 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
-		docSrc: '../../images/circle.png'
+		docSrc: '../../images/circle.jpg'
 	},
 
 	/**

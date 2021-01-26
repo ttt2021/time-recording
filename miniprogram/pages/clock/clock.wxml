@@ -5,10 +5,10 @@
 		<view class="name">待办</view>
 		<view class="collection">
 			<view class="todo">
-				<image class="pic" src="../../images/add.png" />
+				<image class="pic" src="../../images/add.jpg" />
 			</view>
 			<view class="record">
-				<image class="pic" src="../../images/addSet.png" />
+				<image class="pic" src="../../images/addSet.jpg" />
 			</view>
 		</view>
 	</view>
@@ -16,7 +16,7 @@
 	<view class="clock-contant">
 		<view class="clock-wrapper">
 			<view class="contant-icon">
-				<image class="contant-img" src="../../images/notodo.png" />
+				<image class="contant-img" src="../../images/notodo.jpg" />
 			</view>
 			<view class="tip">当前没有待办，点击右上角 + 号创建一个吧~~~</view>
 		</view>

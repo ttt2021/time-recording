@@ -6,7 +6,7 @@
 	<!--<view class="timeline">
 		<view class="line"></view>
 		<view class="dot">
-			<image class="timeline-doc" src="../../../images/circle.png" />
+			<image class="timeline-doc" src="../../../images/circle.jpg" />
 		</view>
 		<view class="contant">
 			<view class="contantWrapper">

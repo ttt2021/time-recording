@@ -42,13 +42,13 @@
 		 data-to="/pages/user/hot/hot"
 		>
 			<view class="contant-icon">
-				<image class="img" src="../../images/rank.png" />
+				<image class="img" src="../../images/rank.jpg" />
 				<view class="contant-title">
 					<text class="title">热门排行</text>
 				</view>
 			</view>
 			<view class="contant-arrow">
-				<image class="arrow" src="../../images/arrow-right.png" />
+				<image class="arrow" src="../../images/arrow-right.jpg" />
 			</view>
 		</view>-->
 
@@ -73,13 +73,13 @@
 		<!--<view class="consultation">
 			<button class="btn contant-column" open-type="contact">
 				<view class="contant-icon">
-					<image class="img" src="../../images/robot.png" />
+					<image class="img" src="../../images/robot.jpg" />
 					<view class="contant-title">
 						<text class="title">在线咨询</text>
 					</view>
 				</view>
 				<view class="contant-arrow btn-arrow">
-					<image class="arrow" src="../../images/arrow-right.png" />
+					<image class="arrow" src="../../images/arrow-right.jpg" />
 				</view>
 			</button>
 		</view>-->

@@ -13,7 +13,7 @@ Page({
 		isLogin: false, // 是否登录
 		isDisabled: false, // 按钮是否禁用
 		menuItems: meMenu,
-		arrowSrc: '../../images/arrow-right.png'
+		arrowSrc: '../../images/arrow-right.jpg'
 	},
 
 	closeLoginPopup() {
@@ -58,11 +58,11 @@ Page({
 					userInfo: userinfos,
 					isDisabled: true
 				})
-				self.closeLoginPopup()
 				// 若登录成功则将用户信息挂载到app.globalData上
 				app.globalData.userInfo = userinfos
 				// 用户信息存储到本地存储
 				wx.setStorageSync('userinfoLogs', [userinfos])
+				self.closeLoginPopup()	
 				wx.showToast({
 					title: '登录成功',
 					icon: 'success',
@@ -120,16 +120,16 @@ Page({
 		const self = this
 
 		// 从本地存储中获取数据
-		// let userinfoLogs = wx.getStorageSync('userinfoLogs')
+		let userinfoLogs = wx.getStorageSync('userinfoLogs') || []
 
 		// 从全局上获取本地存储挂载的数据
 		// console.log(app)
-		let userinfoLogs = app.globalData.userInfo
+		// let userinfoLogs = app.globalData.userInfo
 		// console.log(userinfoLogs)
 		if (userinfoLogs.length === 0) { // 若本地无存储
 			self.setData({
 				userInfo: {
-					avatarUrl: '../../images/gravatar.png',
+					avatarUrl: '../../images/gravatar.jpg',
 					nickName: '登录'
 				}
 			})

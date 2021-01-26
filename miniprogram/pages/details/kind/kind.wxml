@@ -1,0 +1,35 @@
+<!--miniprogram/pages/details/kind/kind.wxml-->
+<import src="../../../templates/endMore.wxml" />
+
+<view class="kindArticle-container">
+
+	<view class="kind-logo-wrapper">
+		<view class="kind-logo">
+			<view class="background-img">
+				<image
+				 class="kind-img"
+				 src="{{kindList.poster}}"
+				 lazy-load="true"
+				/>
+			</view>
+			<view class="kind-info">
+				<view class="kind-title">{{kindList.title}}</view>
+				<view class="kind-desc">{{kindList.desc}}</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="article-wrapper" wx:if="{{hasArticle}}">
+		<block wx:for="{{articlesList}}" wx:key="index">
+			<articleInfo articleList="{{item}}"></articleInfo>
+		</block>
+	</view>
+
+	<template is="endMore" wx:if="{{noMore}}"></template>
+
+	<view class="no-articles-wrapper" wx:if="{{!hasArticle}}">
+		还没有文章哦~~~
+	</view>
+
+</view>
+

@@ -8,8 +8,14 @@
 		<!-- 新增文章 -->
 		<template is="menuItem" data="{{item: listItems.addArticle, arrowSrc: arrowSrc}}"></template>
 
+		<!-- 文章管理 -->
+		<template is="menuItem" data="{{item: listItems.articles, arrowSrc: arrowSrc}}"></template>
+
 		<!-- 人员管理 -->
 		<template is="menuItem" data="{{item: listItems.people, arrowSrc: arrowSrc}}"></template>
+
+		<!-- 分类管理 -->
+		<template is="menuItem" data="{{item: listItems.kind, arrowSrc: arrowSrc}}"></template>
 
 	</view>
 

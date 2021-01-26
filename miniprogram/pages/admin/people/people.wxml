@@ -54,14 +54,14 @@
 				 bindtap="preMonth"
 				 data-to="visits"
 				>
-					<image class="arrow-image" src="../../../images/arrow-left.png" />
+					<image class="arrow-image" src="../../../images/arrow-left.jpg" />
 				</view>
 				<view
 				 class="arrow-right"
 				 bindtap="nextMonth"
 				 data-to="visits"
 				>
-					<image class="arrow-image" src="../../../images/arrow-right.png" />
+					<image class="arrow-image" src="../../../images/arrow-right.jpg" />
 				</view>
 			</view>
 		</view>
@@ -92,14 +92,14 @@
 				 bindtap="preMonth"
 				 data-to="peopledist"
 				>
-					<image class="arrow-image" src="../../../images/arrow-left.png" />
+					<image class="arrow-image" src="../../../images/arrow-left.jpg" />
 				</view>
 				<view
 				 class="arrow-right"
 				 bindtap="nextMonth"
 				 data-to="peopledist"
 				>
-					<image class="arrow-image" src="../../../images/arrow-right.png" />
+					<image class="arrow-image" src="../../../images/arrow-right.jpg" />
 				</view>
 			</view>
 		</view>
