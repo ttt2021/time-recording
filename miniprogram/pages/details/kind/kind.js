@@ -152,7 +152,6 @@ Page({
 				console.log(res)
 				let articlesList = res.data
 				console.log(articlesList)
-				wx.hideLoading()
 				if (articlesList.length === 0) {
 					that.setData({
 						noMore: true
