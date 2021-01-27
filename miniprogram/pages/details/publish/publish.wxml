@@ -1,2 +1,173 @@
 <!--miniprogram/pages/details/publish/publish.wxml-->
-<text>miniprogram/pages/details/publish/publish.wxml</text>
+<view class="article-container">
+	<view class="article-wrapper" wx:if="{{canOpenView}}">
+		<view class="article-title">{{articleInfo.title}}</view>
+		<view class="article-info">
+			<view class="article-createTime info-common">
+				<view class="time-icon">
+					<image
+					 class="icon"
+					 src="../../../images/time.jpg"
+					 lazy-load="true"
+					/>
+				</view>
+				<view class="time text-common">{{articleInfo.createTime}}</view>
+			</view>
+			<view class="article-kind info-common">
+				<view class="kind-icon">
+					<image
+					 class="icon"
+					 src="../../../images/articleKind.jpg"
+					 lazy-load="true"
+					/>
+				</view>
+				<view class="kind text-common">{{articleInfo.kind}}</view>
+			</view>
+			<view class="article-comment info-common">
+				<view class="comment-icon">
+					<image
+					 class="icon"
+					 src="../../../images/comment.jpg"
+					 lazy-load="true"
+					/>
+				</view>
+				<view class="comment text-common">{{articleInfo.comments}}</view>
+			</view>
+			<view class="article-views info-common">
+				<view class="views-icon">
+					<image
+					 class="icon"
+					 src="../../../images/views.jpg"
+					 lazy-load="true"
+					/>
+				</view>
+				<view class="views text-common">{{articleInfo.views}}</view>
+			</view>
+			<view class="article-likes info-common">
+				<view class="likes-icon">
+					<image
+					 class="icon"
+					 src="../../../images/likes.jpg"
+					 lazy-load="true"
+					/>
+				</view>
+				<view class="likes text-common">{{articleInfo.likes}}</view>
+			</view>
+			<view class="article-edit" wx:if="{{isAdmin}}">编辑</view>
+		</view>
+		<view class="article-cover">
+			<image
+			 class="cover"
+			 src="{{articleInfo.cover}}"
+			 lazy-load="true"
+			/>
+		</view>
+		<view class="article-content">
+			<mp-html
+			 html="{{articleInfo.content}}"
+			 show-with-animation
+			 animation-duration="500"
+			 img-mode="widthFix"
+			></mp-html>
+		</view>
+	</view>
+
+	<view class="prev-next-container">
+		<view class="prev-container arrow">
+			<view class="prev-icon">
+				<image
+				 class="iconImg"
+				 src="../../../images/arrowPrev.jpg"
+				 lazy-load="true"
+				/>
+			</view>
+			<view class="prev-title arrow-title">csdichdaiviav</view>
+		</view>
+		<view class="next-container arrow">
+			<view class="next-title arrow-title">aDInzknvzniv</view>
+			<view class="next-icon">
+				<image
+				 class="iconImg"
+				 src="../../../images/arrowNext.jpg"
+				 lazy-load="true"
+				/>
+			</view>
+		</view>
+	</view>
+
+	<view class="guess-like-container">
+		<view class="guessLike-title">猜你喜欢</view>
+		<view class="guess-list-container">
+			<view class="guess-number">1.</view>
+			<view class="guess-title">fdafhdidncaio</view>
+		</view>
+	</view>
+
+	<view class="reword-container">
+		<view class="reword-title">点赞</view>
+		<view class="reword-count-container">
+			<view class="reword-count">23人已赞</view>
+			<view class="reword-icon">
+				<image
+				 class="rewordIcon"
+				 src="../../../images/love.jpg"
+				 lazy-load="true"
+				/>
+			</view>
+		</view>
+		<view class="reword-avatar-container">
+			<view class="avatar-wrapper">
+				<image
+				 class="avatarIcon"
+				 src="../../../images/2.jpg"
+				 lazy-load="true"
+				/>
+			</view>
+		</view>
+	</view>
+
+	<view class="comment-container">
+		<view class="comment-title-wrapper">
+			<view class="comment-title">评论交流</view>
+			<view class="tip">(点击评论内容可以回复)</view>
+		</view>
+		<view class="comment-count">有5条评论</view>
+		<view class="comment-content-wrapper">
+			<view class="comment-content">
+				<view class="comment-userinfo">
+					<view class="user-info">
+						<view class="user-avatar">
+							<image
+							 class="userImg"
+							 src="../../../images/2.jpg"
+							 lazy-load="false"
+							/>
+						</view>
+						<view class="username">御剑</view>
+					</view>
+					<view class="comment-time">2020-01-27</view>
+				</view>
+				<view class="comment-message">sdandinfjdwbfwbeifb</view>
+			</view>
+
+			<view class="comment-content">
+				<view class="comment-userinfo">
+					<view class="user-info">
+						<view class="user-avatar">
+							<image
+							 class="userImg"
+							 src="../../../images/2.jpg"
+							 lazy-load="false"
+							/>
+						</view>
+						<view class="username">御剑</view>
+					</view>
+					<view class="comment-time">2020-01-27</view>
+				</view>
+				<view class="comment-message">sdandinfjdwbfwbeifb</view>
+			</view>
+			<view class="nomore">没有更多了。。。使用模板</view>
+		</view>
+	</view>
+</view>
+

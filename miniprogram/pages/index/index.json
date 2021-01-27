@@ -2,5 +2,7 @@
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
     "articleInfo": "/components/articleInfo/articleInfo"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

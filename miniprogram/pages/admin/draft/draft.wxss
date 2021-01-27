@@ -1,0 +1,13 @@
+/* miniprogram/pages/admin/draft/draft.wxss */
+@import '../../../vendor/endMore/index.wxss';
+
+.allArticles-container {
+  padding: 15rpx 20rpx 0 20rpx;
+}
+
+.no-articles-wrapper {
+  width: 100%;
+  margin-top: 500rpx;
+  text-align: center;
+  color: #dddddd;
+}

@@ -1,2 +1,22 @@
 <!--miniprogram/pages/admin/articles/articles.wxml-->
-<text>miniprogram/pages/admin/articles/articles.wxml</text>
+<import src="../../../templates/endMore.wxml" />
+
+<view class="allArticles-container">
+	<view class="article-wrapper" wx:if="{{hasArticle}}">
+		<block wx:for="{{articlesList}}" wx:key="index">
+			<articleInfo
+			 articleList="{{item}}"
+			 isAdmin="{{isAdmin}}"
+			 title="{{title}}"
+			 bind:updatePublish="onShow"
+			></articleInfo>
+		</block>
+	</view>
+
+	<template is="endMore" wx:if="{{noMore}}"></template>
+
+	<view class="no-articles-wrapper" wx:if="{{!hasArticle}}">
+		还没有文章哦~~~
+	</view>
+</view>
+

@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/admin/articles/articles",
         "pages/index/index",
         "pages/admin/home/home",
+        "pages/admin/articles/articles",
         "pages/column/column",
         "pages/details/kind/kind",
         "pages/admin/kind/kind",
@@ -17,7 +17,8 @@
         "pages/details/publish/publish",
         "pages/details/draft/draft",
         "components/kindList/kindList",
-        "components/articleInfo/articleInfo"    
+        "components/articleInfo/articleInfo",
+        "pages/admin/draft/draft"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",

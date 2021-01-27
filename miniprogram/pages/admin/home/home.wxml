@@ -11,6 +11,9 @@
 		<!-- 文章管理 -->
 		<template is="menuItem" data="{{item: listItems.articles, arrowSrc: arrowSrc}}"></template>
 
+		<!-- 草稿箱 -->
+		<template is="menuItem" data="{{item: listItems.draft, arrowSrc: arrowSrc}}"></template>
+
 		<!-- 人员管理 -->
 		<template is="menuItem" data="{{item: listItems.people, arrowSrc: arrowSrc}}"></template>
 

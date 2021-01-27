@@ -157,17 +157,13 @@ Page({
 					title: '保存成功',
 					content: '是否跳转到详情页',
 					success: saveRes => {
-						if (saveRes.confirm && that.data.isPublish === '1') {
+						if ((saveRes.confirm && that.data.isPublish === '1') || (saveRes.confirm && that.data.isPublish === '0')) {
 							wx.navigateTo({ // 跳转到文章详情页
-								url: `/pages/details/publish/publish?scene${article_id}`
-							})
-						} else if (saveRes.confirm && that.data.isPublish === '0') {
-							wx.navigateTo({ // 跳转到文章详情页
-								url: `/pages/details/draft/draft?scene${article_id}`
+								url: `/pages/details/publish/publish?id=${article_id}`
 							})
 						} else if ((saveRes.cancel && that.data.isPublish === '1') || (saveRes.cancel && that.data.isPublish === '0')) {
 							wx.navigateTo({ // 跳转到文章管理页面
-								url: `/pages/admin/home/home`
+								url: `/pages/admin/articles/articles`
 							})
 						}
 					}

@@ -6,6 +6,8 @@
   border-radius: 10rpx;
   box-shadow: 0rpx 5rpx 15rpx #cccccc;
   font-size: 28rpx;
+  word-spacing: 10rpx;
+  letter-spacing: 5rpx;
 }
 
 .article-cover {
@@ -45,6 +47,9 @@
   margin-bottom: 15rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
   -webkit-line-clamp: 3;	/* 控制显示几行 */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,4 +80,27 @@
   font-size: 24rpx;
   color: #cccccc;
   margin-top: 5rpx;
+}
+
+.article-operation-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding-bottom: 20rpx; */
+  margin-top: 20rpx;
+}
+
+.button::after {
+  border: none;
+}
+  
+button {
+  background-color: #A5D63F; 
+  /* padding-left: 0;
+  padding-right: 0; */
+  line-height:inherit;
+  /* border-radius:0; */
+  padding: 10rpx 20rpx;
+  color: #ffffff;
+  font-size: 28rpx;
 }

@@ -1,4 +1,6 @@
 <!--miniprogram/pages/index/index.wxml-->
+<import src="../../templates/endMore.wxml" />
+
 <view class="container">
 
 	<view class="header-container">
@@ -15,11 +17,15 @@
 			 duration="{{duration}}"
 			>
 				<block wx:for="{{img}}" wx:key="imgIndex">
-					<swiper-item class="swiperItem">
+					<swiper-item
+					 class="swiperItem"
+					 bindtap="goDetail"
+					 data-info="{{item}}"
+					>
 						<image
 						 class="pic"
 						 mode="aspectFill"
-						 src="{{item.image}}"
+						 src="{{item.cover}}"
 						/>
 						<view class="swiper-desc">
 							<text>{{item.title}}</text>
@@ -73,8 +79,20 @@
 	</view>
 
 	<!-- 首页内容 -->
-	<view class="contant-wrapper">
-		<articleInfo></articleInfo>
+	<view class="contant-wrapper" wx:if="{{hasArticle}}">
+		<block wx:for="{{articlesList}}" wx:key="index">
+			<articleInfo
+			 articleList="{{item}}"
+			 isAdmin="{{isAdmin}}"
+			 title="{{title}}"
+			></articleInfo>
+		</block>
+	</view>
+
+	<template is="endMore" wx:if="{{noMore}}"></template>
+
+	<view class="no-articles-wrapper" wx:if="{{!hasArticle}}">
+		还没有文章哦~~~
 	</view>
 
 </view>

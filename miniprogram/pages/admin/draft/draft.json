@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "articleInfo": "/components/articleInfo/articleInfo"
+  },
+  "navigationBarTitleText": "草稿箱",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

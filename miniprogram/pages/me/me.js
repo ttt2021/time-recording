@@ -191,7 +191,10 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		const isAdmin = "false"
+		app.globalData.isAdmin = isAdmin
+		// 将管理员标志存储到本地
+		wx.setStorageSync('isAdmin', isAdmin)
 	},
 
 	/**

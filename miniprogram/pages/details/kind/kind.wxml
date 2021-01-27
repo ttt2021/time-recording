@@ -21,7 +21,12 @@
 
 	<view class="article-wrapper" wx:if="{{hasArticle}}">
 		<block wx:for="{{articlesList}}" wx:key="index">
-			<articleInfo articleList="{{item}}"></articleInfo>
+			<articleInfo
+			 articleList="{{item}}"
+			 isAdmin="{{isAdmin}}"
+			 title="{{title}}"
+			 bind:updatePublish="onShow"
+			></articleInfo>
 		</block>
 	</view>
 

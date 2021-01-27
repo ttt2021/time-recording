@@ -12,18 +12,20 @@ Page({
 		articlesList: [[]],
 		hasArticle: false,
 		noMore: false,
-		title: ''
+		title: '',
+		isAdmin: false
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		// console.log(options.title)
-		wx.showLoading({
-			title: '加载中...'
-		})
-		const title = options.title
+		console.log(options)
+		const title = options.detail
+		wx.setStorageSync('title', title)
+		console.log(title)
+		let isAdmin = wx.getStorageSync('isAdmin') === "true" ? true : false
+		// const isAdmin = options.isAdmin === "true" ? true : false
 		wx.setNavigationBarTitle({
 			title: `${title}`,
 			success: function (res) {
@@ -32,14 +34,18 @@ Page({
 		})
 		const that = this
 		that.setData({
-			title: title
+			title: title,
+			isAdmin: isAdmin
 		})
-		this.getKind()
+		that.getKind()
 	},
 
 	getKind: function () {
 		const that = this
 		const title = that.data.title
+		wx.showLoading({
+			title: '加载中...'
+		})
 		db.collection('kind').where({
 			title: title
 		}).get({
@@ -58,15 +64,20 @@ Page({
 		const title = that.data.title
 		db.collection('articles').where({
 			kind: title
-		}).limit(10).orderBy('createTime', 'openId').get({
+		}).limit(10).orderBy('createTime', 'desc').orderBy('openId', 'asc').get({
 			success: res => {
 				console.log(res)
 				let articlesList = res.data
 				console.log(articlesList)
 				if (articlesList.length !== 0) {
 					for (let i = 0; i < articlesList.length; i++) {
-						articlesList[i].createTime = formatTime.dayDate(articlesList[i].createTime)
-						// console.log(articlesList[i].createTime)
+						if (articlesList[i].isPublish === '0') { // 判断是否发表
+							articlesList.splice(i, 1)
+							i--
+						} else {
+							articlesList[i].isPublish = "已发表"
+							articlesList[i].createTime = formatTime.dayDate(articlesList[i].createTime)
+						}
 					}
 					that.setData({
 						page: 0,
@@ -90,8 +101,14 @@ Page({
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function () {
-
+	onShow: function (e) {
+		const detail = wx.getStorageSync('title') || ''
+		const options = {
+			detail: detail
+		}
+		const that = this
+		that.onLoad(options)
+		that.onReachBottom()
 	},
 
 	/**
@@ -147,11 +164,12 @@ Page({
 		let page = that.data.page + 10
 		db.collection('articles').where({
 			kind: title
-		}).skip(page).limit(10).orderBy('createTime', 'openId').get({
+		}).skip(page).limit(10).orderBy('createTime', 'desc').orderBy('openId', 'asc').get({
 			success: res => {
 				console.log(res)
 				let articlesList = res.data
 				console.log(articlesList)
+				wx.hideLoading()
 				if (articlesList.length === 0) {
 					that.setData({
 						noMore: true
@@ -159,8 +177,14 @@ Page({
 					return
 				}
 				for (let i = 0; i < articlesList.length; i++) {
-					articlesList[i].createTime = formatTime.dayDate(articlesList[i].createTime)
-					// console.log(articlesList[i].createTime)
+					// console.log(articlesList[i].isPublish)
+					if (articlesList[i].isPublish === '0') {
+						articlesList.splice(i, 1)
+						i--
+					} else {
+						articlesList[i].isPublish = "已发表"
+						articlesList[i].createTime = formatTime.dayDate(articlesList[i].createTime)
+					}
 				}
 				that.setData({
 					page: page,
@@ -168,7 +192,6 @@ Page({
 					hasArticle: true
 				})
 				console.log(that.data.articlesList)
-				wx.hideLoading()
 			}
 		})
 	},

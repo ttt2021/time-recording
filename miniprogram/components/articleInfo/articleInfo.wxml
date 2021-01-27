@@ -4,13 +4,28 @@
  wx:for="{{articleList}}"
  wx:key="index"
 >
-	<view class="article-cover">
+	<view
+	 class="article-cover"
+	 bindtap="goDetail"
+	 data-info="{{item}}"
+	>
 		<view class="article-pic">
 			<image class="cover-pic" src="{{item.cover}}" />
 		</view>
 		<view class="article-title">{{item.title}}</view>
 	</view>
-	<view class="article-desc">{{item.desc}}</view>
+	<view
+	 class="article-desc"
+	 bindtap="goDetail"
+	 data-info="{{item}}"
+	>{{item.content}}
+		<!--<mp-html
+		 html="{{item.content}}"
+		 show-with-animation
+		 animation-duration="500"
+		 img-mode="widthFix"
+		></mp-html>-->
+	</view>
 	<view class="article-infos">
 		<view class="article-kind">{{item.kind}}</view>
 		<view class="time-wrapper info">
@@ -37,6 +52,37 @@
 			</view>
 			<view class="likes-count">{{item.likes}}</view>
 		</view>
+	</view>
+
+	<view class="article-operation-wrapper" wx:if="{{isAdmin}}">
+		<button
+		 class="delete-btn btn"
+		 data-del='{{item}}'
+		 bindtap="del"
+		 hover-class="btn-hover"
+		>删除
+		</button>
+		<button
+		 class="update-btn btn"
+		 data-update='{{item}}'
+		 bindtap="updated"
+		 hover-class="btn-hover"
+		>修改
+		</button>
+		<!--<button
+		 class="detail-btn btn"
+		 bindtap="goDetail"
+		 data-info="{{item}}"
+		 hover-class="btn-hover"
+		>查看详情
+		</button>-->
+		<button
+		 class="publish-btn btn"
+		 data-publish='{{item}}'
+		 bindtap="publish"
+		 hover-class="btn-hover"
+		>{{item.isPublish}}
+		</button>
 	</view>
 </view>
 

@@ -86,7 +86,7 @@ Component({
 			console.log(e)
 			let title = e[0].currentTarget.dataset.title
 			wx.navigateTo({
-				url: `/pages/details/kind/kind?title=${title}`
+				url: `/pages/details/kind/kind?detail=${title}`
 			})
 		})
 	}

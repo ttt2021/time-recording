@@ -18,7 +18,7 @@ Page({
 		console.log(e)
 		const url = e.currentTarget.dataset.detail
 		wx.navigateTo({
-			url: `/pages/details/kind/kind?title=${url.title}` // 跳转到分类文章页面
+			url: `/pages/details/kind/kind?detail=${url.title}&isAdmin=true` // 跳转到分类文章页面
 		})
 	},
 
@@ -146,16 +146,16 @@ Page({
 				// const title = that.data.title
 				// console.log(res._id)
 				// const _id = res._id // 分类id
-					console.log(res)
-					that.setData({
-						addModel: true,
-						title: '',
-						desc: '',
-						poster: '',
-						posterUrl: ''
-					})
-					wx.hideLoading()
-					that.getList()
+				console.log(res)
+				that.setData({
+					addModel: true,
+					title: '',
+					desc: '',
+					poster: '',
+					posterUrl: ''
+				})
+				wx.hideLoading()
+				that.getList()
 			}
 		})
 	},

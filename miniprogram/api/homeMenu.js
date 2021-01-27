@@ -14,6 +14,14 @@ const articles = {
   title: '文章管理'
 }
 
+const draft = {
+  className: 'draft',
+  bindTab: 'go',
+  goPage: 'draft',
+  icon: '../../../images/draft.jpg',
+  title: '草稿箱'
+}
+
 const people = {
   className: 'people',
   bindTab: 'go',
@@ -34,7 +42,8 @@ const homeItems = {
   addArticle,
   people,
   kind,
-  articles
+  articles,
+  draft
 }
 
 export default homeItems;

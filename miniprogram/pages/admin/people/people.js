@@ -332,7 +332,7 @@ Page({
 
 	setAdmin: function (e) {
 		const that = this
-		// console.log(e)
+		console.log(e)
 		const isAdmin = e.currentTarget.dataset.set
 		const id = e.currentTarget.dataset.id
 		wx.cloud.callFunction({
@@ -404,7 +404,7 @@ Page({
 			title: '加载中...'
 		})
 		// 获取用户列表 限制返回数量为10条
-		db.collection('usersinfo').where({}).limit(10).orderBy('createTime', 'openId').get({
+		db.collection('usersinfo').where({}).limit(10).orderBy('createTime', 'desc').orderBy('openId', 'asc').get({
 			success: res => { // 获取成功
 				// console.log(res.data)
 				let result = res.data
@@ -491,7 +491,7 @@ Page({
 		})
 		let page = that.data.page + 10
 		// 跳过前面page条，从page+1条开始返回 限制返回10条数据
-		db.collection('usersinfo').where({}).skip(page).limit(10).orderBy('createTime', 'openId').get({
+		db.collection('usersinfo').where({}).skip(page).limit(10).orderBy('createTime', 'desc').orderBy('openId', 'asc').get({
 			success: res => {
 				let result = res.data
 				wx.hideLoading()

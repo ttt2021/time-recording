@@ -1,5 +1,6 @@
 // miniprogram/pages/admin/home/home.js
 import homeItems from '../../../api/homeMenu'
+const app = getApp()
 Page({
 
 	/**
@@ -30,6 +31,10 @@ Page({
 				// success
 			}
 		})
+		const isAdmin = "true"
+		app.globalData.isAdmin = isAdmin
+		// 将管理员标志存储到本地
+		wx.setStorageSync('isAdmin', isAdmin)
 	},
 
 	/**

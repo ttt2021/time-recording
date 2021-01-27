@@ -1,4 +1,6 @@
 /* miniprogram/pages/index/index.wxss */
+@import '../../vendor/endMore/index.wxss';
+
 .header-container {
   width: 100%;
   /* border: 1px solid #000; */
@@ -54,4 +56,8 @@
 
 .notice-swiper {
   height: 80rpx;
+}
+
+.no-articles-wrapper {
+  margin-top: 200rpx;
 }
