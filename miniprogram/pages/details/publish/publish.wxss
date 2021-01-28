@@ -1,9 +1,12 @@
 /* miniprogram/pages/details/publish/publish.wxss */
+@import '../../../vendor/endMore/index.wxss';
+@import '../../../vendor/footer/index.wxss';
 
 .article-container {
   padding: 20rpx 30rpx;
   word-spacing: 10rpx;
   letter-spacing: 5rpx;
+  overflow-x: hidden;
 }
 
 .article-title {
@@ -80,7 +83,9 @@
 
 .arrow {
   display: flex;
-  align-items: center;
+  /* align-items: center;
+  width: 45%;
+  border: 1px solid #000; */
 }
 
 .prev-icon {
@@ -91,17 +96,25 @@
   margin-left: 10rpx;
 }
 
+/* .prev-container {
+  width: 45%;
+  border: 1px solid #000;
+} */
+
 .arrow-title {
-  word-break: break-all;
+  /* word-break: break-all;
   word-wrap: break-word;
-  white-space: pre-wrap;
+  white-space: pre-wrap; */
   font-size: 28rpx;
   color: #8d8d8d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .iconImg {
-  width: 60rpx;
-  height: 60rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .guessLike-title {
@@ -172,9 +185,9 @@
   border-radius: 50%;
 }
 
-.comment-container {
+/* .comment-container {
   margin-bottom: 120rpx;
-}
+} */
 
 .comment-title-wrapper {
   font-family: '楷体';
@@ -182,6 +195,7 @@
   font-weight: bold;
   /* letter-spacing: 5rpx; */
   display: flex;
+  align-items: center;
 }
 
 .comment-title {
@@ -233,4 +247,154 @@
   word-wrap: break-word;
   white-space: pre-wrap;
   line-height: 50rpx;
+}
+
+.footer-container {
+  margin-bottom: 120rpx;
+}
+
+.guessLike-wrapper, .comment-titleInfo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.write-Img, .another {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.tip {
+  font-size: 26rpx;
+}
+
+.another-wrapper, .write-comment-title {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.write-name, .another-title {
+  color: #8d8d8d;
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+
+.another-icon, .write-icon {
+  margin-top: 5rpx;
+}
+
+.no-reword {
+  margin-bottom: 30rpx;
+}
+
+.tabbar-container {
+  /* position: absolute;
+  width: 100%;
+  height: 100%; */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 110rpx;
+  font-size: 28rpx;
+  font-family: '楷体';
+  /* background: #ffffff; */
+  /* font-weight: bold; */
+  color: #8d8d8d;
+  overflow-x: hidden;
+}
+
+.tabbar-wrapper {
+  background: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid #000; */
+  position: fixed;
+  /* overflow-x: hidden; */
+}
+
+.tabbarIcon {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.item-wrapper {
+  padding: 20rpx 0;
+}
+
+.tabbar-icon {
+  /* margin-left: 8rpx; */
+  /* border: 1px solid #000; */
+  /* margin: 0 auto; */
+  text-align: center;
+}
+
+.index-wrapper {
+  padding-left: 30rpx;
+}
+
+.forward-wrapper {
+  padding-right: 30rpx;
+}
+
+.forwardIcon {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.forward-icon {
+  /* border: 1px solid #000; */
+  /* padding: 20rpx 20rpx 0 20rpx; */
+  /* padding: 10rpx; */
+  background: #ffffff;
+  margin-bottom: 15rpx;
+  /* border-radius: 50%; */
+  /* margin-top: -56rpx; */
+}
+
+.forward-name {
+  /* margin-left: 30rpx; */
+  padding-top: 15rpx;
+}
+
+button{
+  /*消除button的默认样式*/
+  /*这种写法是对所有的button标签同时生效*/
+  margin: 0px;
+  padding: 10px;
+  /*自定义边框*/
+  border: 0px;
+  /*消除默认点击蓝色边框效果*/
+  outline: none;
+  line-height: 0;
+  font-size: 28rpx;
+  font-family: '楷体';
+  color: #8d8d8d;
+  margin-top: -64rpx;
+  background: #ffffff;
+}
+
+.btn {
+  /* border: 1px solid #000; */
+  border-radius: 50%;
+}
+
+.poster-container {
+  z-index: 666;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: rgba(255, 255, 255, .5);
+  border: 1px solid #000;
+  position: fixed;
+}
+
+.poster-wrapper {
+  top: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, -50%);
 }

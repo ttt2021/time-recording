@@ -19,14 +19,18 @@
 	 bindtap="goDetail"
 	 data-info="{{item}}"
 	>{{item.content}}
-		<!--<mp-html
+		<!-- <mp-html
 		 html="{{item.content}}"
 		 show-with-animation
 		 animation-duration="500"
 		 img-mode="widthFix"
-		></mp-html>-->
+		></mp-html> -->
 	</view>
-	<view class="article-infos">
+	<view
+	 class="article-infos"
+	 bindtap="goDetail"
+	 data-info="{{item}}"
+	>
 		<view class="article-kind">{{item.kind}}</view>
 		<view class="time-wrapper info">
 			<view class="time-icon">

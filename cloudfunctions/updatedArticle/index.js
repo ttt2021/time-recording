@@ -16,7 +16,10 @@ exports.main = async (event, context) => {
 			isPublish: articleInfo.isPublish,
 			kind: articleInfo.kind,
 			title: articleInfo.title,
-			updatedTime: articleInfo.updatedTime
+			updatedTime: articleInfo.updatedTime,
+			likes: articleInfo.likes,
+			comments: articleInfo.comments,
+			views: articleInfo.views
 		}
 	})
 	return updatedResult

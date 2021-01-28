@@ -158,11 +158,11 @@ Page({
 					content: '是否跳转到详情页',
 					success: saveRes => {
 						if ((saveRes.confirm && that.data.isPublish === '1') || (saveRes.confirm && that.data.isPublish === '0')) {
-							wx.navigateTo({ // 跳转到文章详情页
+							wx.redirectTo({ // 跳转到文章详情页
 								url: `/pages/details/publish/publish?id=${article_id}`
 							})
 						} else if ((saveRes.cancel && that.data.isPublish === '1') || (saveRes.cancel && that.data.isPublish === '0')) {
-							wx.navigateTo({ // 跳转到文章管理页面
+							wx.redirectTo({ // 跳转到文章管理页面
 								url: `/pages/admin/articles/articles`
 							})
 						}

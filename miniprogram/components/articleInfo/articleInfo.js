@@ -64,10 +64,35 @@ Component({
 		goDetail(e) {
 			console.log(e)
 			const that = this
-			let articleId = e.currentTarget.dataset.info._id
+			let articleInfo = e.currentTarget.dataset.info
+			let articleId = articleInfo._id
 			console.log(articleId)
-			wx.navigateTo({
-				url: `/pages/details/publish/publish?id=${articleId}`
+			const isAdmin = wx.getStorageSync('isAdmin')
+			if (isAdmin === 'false') {
+				articleInfo.views = articleInfo.views + 1
+			}
+			console.log(articleInfo)
+			const userInfo = wx.getStorageSync('userinfoLogs') || []
+			if (userInfo.length !== 0) {
+				const userId = userInfo[0]._id
+				wx.cloud.callFunction({
+					name: 'updatedViews',
+					data: {
+						articleId: articleId,
+						userId: userId
+					}
+				})
+			}
+			wx.cloud.callFunction({
+				name: 'updatedArticle',
+				data: {
+					articleInfo: articleInfo
+				}
+			}).then(res => {
+				console.log(res)
+				wx.navigateTo({
+					url: `/pages/details/publish/publish?id=${articleId}`
+				})
 			})
 		}
 	}

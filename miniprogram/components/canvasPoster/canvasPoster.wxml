@@ -1,0 +1,15 @@
+<!--components/canvasPoster/canvasPoster.wxml-->
+<view class="canvasPoster-container">
+	<view class="canvas-box">
+		<image
+		 class="img"
+		 src="{{posterImg}}"
+		 lazy-load="true"
+		/>
+		<canvas canvas-id="poster" style="width:{{_width}}px; height:{{_height/1.423}}px"></canvas>
+	</view>
+	<view class="canvas-btn">
+		<button class="poster-btn">保存图片</button>
+	</view>
+</view>
+

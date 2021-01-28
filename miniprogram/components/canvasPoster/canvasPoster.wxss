@@ -1,0 +1,14 @@
+/* components/canvasPoster/canvasPoster.wxss */
+
+.canvasPoster-container {
+  width: 600rpx;
+  height: 800rpx;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+
+.canvas-btn {
+  color: #8d8d8d;
+  background: #ffffff;
+  margin-top: 15rpx;
+}
