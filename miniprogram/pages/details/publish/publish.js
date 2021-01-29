@@ -2,6 +2,7 @@
 const db = wx.cloud.database();
 const app = getApp()
 const formatTime = require("../../../utils/formatTime.js");
+// const QR = require("../../../utils/qrcode.js");
 Page({
 
 	/**
@@ -22,8 +23,178 @@ Page({
 		avatarList: [],
 		collectImg: '../../../images/collect.jpg',
 		collectName: '收藏',
-		isShowPoster: false
+		isShowPoster: false,
+		imgCode: '', // 二维码地址
+		likeInfo: [],
+		show: false,
+		commentContent: ''
+		// canvasHidden: false
 	},
+
+	onClickShow() {
+		let userInfo = wx.getStorageSync('userinfoLogs') || []
+		if (userInfo.length !== 0) {
+			this.setData({
+				show: true
+			});
+			// 若一分钟后还没有写评论，则关闭评论窗口
+			setTimeout(() => {
+				if (this.data.commentContent === '') {
+					this.setData({
+						show: false
+					});
+				}
+			}, 60000)
+		} else {
+			wx.showToast({
+				title: '请登录'
+			})
+			wx.switchTab({
+				url: '/pages/me/me'
+			})
+		}
+	},
+
+	send: function (e) {
+		console.log(e)
+	},
+
+	// onClickHide() {
+	// 	this.setData({
+	// 		show: false
+	// 	});
+	// },
+
+	showPoster: function (e) {
+		// console.log(e)
+		const that = this
+		that.setData({
+			isShowPoster: true
+		})
+		// // 绘制二维码
+		// that.getCode()
+		wx.showToast({
+			title: '海报暂未开通'
+		})
+	},
+
+	// getCode: function () {
+	// 	const that = this
+	// 	let pages = getCurrentPages(); //获取加载的页面	
+	// 	let currentPage = pages[pages.length - 1]; //获取当前页面的对象
+	// 	let url = currentPage.route ;//当前页面url
+	// 	let options = currentPage.options.id
+	// 	// console.log(url, options.id)	
+	// 	// const articleInfo = e.currentTarget.dataset.info
+	// 	// const articleId = articleInfo.id
+	// 	// const articleTitle = articleInfo.title
+	// 	const articlePath = `${url}?id=${options}`
+	// 	// console.log(articlePath)
+	// 	// 绘制大小
+	// 	const size = that.setCanVasSize()
+	// 	// 绘制二维码
+	// 	that.createQrCode(articlePath, 'canvasCode', size.w, size.h)
+	// },
+
+
+	// setCanVasSize: function () {
+	// 	let size = {}
+	// 	const res = wx.getSystemInfoSync()
+	// 	const scale = 750 / 200
+	// 	const width = res.windowWidth / scale
+	// 	const height = width
+	// 	size.w = width
+	// 	size.h = height
+	// 	return size
+	// },
+
+	// // 绘制二维码
+	// createQrCode: function (url, canvasId, cavW, cavH) {
+	// 	// 调用插件中的draw方法，绘制二维码
+	// 	QR.api.draw(url, canvasId, cavW, cavH)
+	// 	setTimeout(() => {
+	// 		this.canvasToTempCodeImg(canvasId)
+	// 	}, 1000)
+	// },
+
+	// canvasToTempCodeImg: function() {
+	// 	const that = this
+	// 	wx.canvasToTempFilePath({
+	// 		canvasId: 'canvasCode',
+	// 		success: function (res) {
+	// 			const tempCodeImg = res.tempFilePath
+	// 			console.log(tempCodeImg)
+	// 			that.setData({
+	// 				imgCode: tempCodeImg,
+	// 				canvasHidden: true
+	// 			})
+	// 			let articleInfo = that.data.articleInfo
+	// 			let picUrl = '../../../images/logo.gif'
+	// 			let content = articleInfo.content
+	// 			let title = articleInfo.title
+	// 			that.canvasPoster(picUrl, tempCodeImg, title, content)
+	// 		}
+	// 	})
+	// },
+
+	// //将canvas转换为图片保存到本地，然后将路径传给image图片的src
+	// canvasPoster: function (picUrl, tempCodeImg, title, content) {
+	// 	const that = this
+	// 	wx.showLoading({
+	// 		title: '正在生成海报...'
+	// 	})
+	// 	let context = wx.createCanvasContext('canvasPoster');
+	//   context.setFillStyle('#ffffff'); //填充背景色
+	//   context.fillRect(0, 0, 600, 970);
+	//   context.drawImage(picUrl, 0, 0, 600, 400); //绘制首图
+	// 	context.drawImage(tempCodeImg, 210, 670, 180, 180); //绘制二维码
+	// 	context.setFillStyle("#959595");
+	//   context.setFontSize(20);
+	//   context.setTextAlign('center');
+	// 	context.fillText("阅读文章，请长按识别二维码", 300, 900);
+	// 	context.setFillStyle("#959595");       
+	//   formatTime.drawTitleExcerpt(context, title, content); //文章标题
+	// 	context.draw();
+	// 	//将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
+	//   setTimeout(function() {
+	//     wx.canvasToTempFilePath({
+	//       canvasId: 'canvasPoster',
+	//       success: function(res) {
+	//         var tempFilePath = res.tempFilePath;
+	//         // that.setData({
+	//         //     imagePath: tempFilePath,
+	//         //     maskHidden: "none"
+	// 				// });
+	// 				that.setData({
+	// 					posterImg: tempFilePath
+	// 				})
+	//         wx.hideLoading();
+	//         console.log("海报图片路径：" + res.tempFilePath);
+	//         // that.modalView.showModal({
+	//         //   title: '保存至相册可以分享到朋友圈',
+	//         //   confirmation: false,
+	//         //   confirmationText: '',
+	//         //   inputFields: [{
+	//         //     fieldName: 'posterImage',
+	//         //     fieldType: 'Image',
+	//         //     fieldPlaceHolder: '',
+	//         //     fieldDatasource: res.tempFilePath,
+	//         //     isRequired: false,
+	//         //   }],
+	//         //   confirm: function(res) {
+	//         //     console.log(res)
+	//         //     //用户按确定按钮以后会回到这里，并且对输入的表单数据会带回
+	//         //   }
+	//         // })
+
+
+	//       },
+	//       fail: function(res) {
+	//         console.log(res);
+	//       }
+	//     });
+	//   }, 1000);
+	// },
 
 	giveLike: function (e) {
 		// console.log(e)
@@ -259,6 +430,52 @@ Page({
 		that.getArticleInfo(articleId)
 		that.getPrevNext(articleId)
 		that.getAvatarList(articleId)
+		that.randlikeList(articleId)
+	},
+
+	changeList: function (e) {
+		console.log(e)
+		const articleId = e.currentTarget.dataset.id
+		const that = this
+		that.randlikeList(articleId)
+	},
+
+	// 随机相似文章
+	randlikeList: function (articleId) {
+		const that = this
+		wx.showLoading({
+			title: '加载中...'
+		})
+		wx.cloud.callFunction({
+			name: 'randArticle',
+			data: {
+				articleId: articleId
+			}
+		}).then(res => {
+			console.log(res)
+			let articles = res.result
+			let length = articles.length
+			// 随机文章数
+			let randNum = Math.floor(Math.random() * 3 + 3)
+			let likeInfo = []
+			let nums = []
+			for (let i = 0; i < randNum; i++) {
+				// 随机数字不能相同
+				let num = Math.floor(Math.random() * length)
+				if (nums.indexOf(num) === -1) {
+					likeInfo.push(articles[num].info)
+					nums.push(num)
+				} else {
+					i--
+				}
+			}
+			console.log(nums)
+			that.setData({
+				likeInfo: likeInfo
+			})
+			console.log(likeInfo)
+			wx.hideLoading()
+		})
 	},
 
 	getPrevNext: function (articleId) {

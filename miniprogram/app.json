@@ -18,8 +18,7 @@
         "pages/details/draft/draft",
         "components/kindList/kindList",
         "components/articleInfo/articleInfo",
-        "pages/admin/draft/draft",
-        "components/canvasPoster/canvasPoster"
+        "pages/admin/draft/draft"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",

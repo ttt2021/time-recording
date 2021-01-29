@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "canvasPoster": "/components/canvasPoster/canvasPoster"
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index"
   }
 }

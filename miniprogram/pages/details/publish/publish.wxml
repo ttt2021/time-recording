@@ -110,10 +110,14 @@
 		<view class="arrow-wrapper" wx:if="{{!hasNext}}"></view>
 	</view>
 
-	<view class="guess-like-container">
+	<view class="guess-like-container" wx:if="{{canOpenView}}">
 		<view class="guessLike-wrapper">
 			<view class="guessLike-title">猜你喜欢</view>
-			<view class="another-wrapper">
+			<view
+			 class="another-wrapper"
+			 bindtap="changeList"
+			 data-id="{{articleInfo._id}}"
+			>
 				<view class="another-icon">
 					<image
 					 class="another"
@@ -121,12 +125,22 @@
 					 lazy-load="true"
 					/>
 				</view>
-				<view class="another-title">换一批</view>
+				<view class="another-title">换一批
+				</view>
 			</view>
 		</view>
-		<view class="guess-list-container">
-			<view class="guess-number">1.</view>
-			<view class="guess-title">fdafhdidncaio</view>
+		<view
+		 class="guess-list-container"
+		 wx:for="{{likeInfo}}"
+		 wx:key="index"
+		>
+			<!--<view class="guess-number"></view>-->
+			<view
+			 class="guess-title"
+			 data-id="{{item._id}}"
+			 bindtap="goToArticle"
+			>{{index + 1}}.{{item.title}}
+			</view>
 		</view>
 	</view>
 
@@ -178,7 +192,31 @@
 					 lazy-load="true"
 					/>
 				</view>
-				<view class="write-name">我要写</view>
+				<view class="write-name" bindtap="onClickShow">我要写</view>
+			</view>
+		</view>
+		<view class="write-show" wx:if="{{show}}">
+			<view class="wrapper">
+				<view class="input-wrapper">
+					<van-cell-group>
+						<van-field
+						 value="{{commentContent}}"
+						 center
+						 clearable
+						 placeholder="评论......"
+						 border="{{false}}"
+						>
+						</van-field>
+					</van-cell-group>
+				</view>
+				<view class="send-button">
+					<van-button
+					 size="small"
+					 type="primary"
+					 bind:getuserinfo="send"
+					>发送
+					</van-button>
+				</view>
 			</view>
 		</view>
 		<view class="comment-count">有5条评论</view>
@@ -255,9 +293,12 @@
 				 class="tabbarIcon"
 				 src="../../../images/poster.jpg"
 				 lazy-load="true"
+				 catchtap="showPoster"
+				 data-info="{{articleInfo}}"
 				/>
 			</view>
-			<view class="tabbar-name">海报</view>
+			<view class="tabbar-name">海报
+			</view>
 		</view>
 		<view class="item-wrapper forward-wrapper">
 			<button
@@ -278,9 +319,25 @@
 	</view>
 </view>
 
-<view class="poster-container" wx:if="{{!isShowPoster}}">
+<!--
+<view class="poster-container" wx:if="{{isShowPoster}}">
 	<view class="poster-wrapper">
-		<canvasPoster></canvasPoster>
+		<image class="codeImg" src="{{posterImg}}" />
+		<view class="code-wrapper">
+			<canvas
+			 hidden="{{canvasHidden}}"
+			 canvas-id="canvasCode"
+			 id="code"
+			></canvas>
+		</view>
+		<view class="canvasPoster-wrapper">
+			<canvas
+			 hidden="{{canvasHidden}}"
+			 canvas-id="canvasPoster"
+			 id="poster"
+			></canvas>
+		</view>
 	</view>
 </view>
+-->
 
