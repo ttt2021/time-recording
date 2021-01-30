@@ -61,10 +61,10 @@ Component({
 				}
 			})
 		}),
-		goDetail(e) {
+		goDetail: tool.throttle(function (e) {
 			console.log(e)
 			const that = this
-			let articleInfo = e.currentTarget.dataset.info
+			let articleInfo = e[0].currentTarget.dataset.info
 			let articleId = articleInfo._id
 			console.log(articleId)
 			const isAdmin = wx.getStorageSync('isAdmin')
@@ -94,6 +94,6 @@ Component({
 					url: `/pages/details/publish/publish?id=${articleId}`
 				})
 			})
-		}
+		}, 3000)
 	}
 })

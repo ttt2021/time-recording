@@ -27,7 +27,10 @@ Page({
 		imgCode: '', // 二维码地址
 		likeInfo: [],
 		show: false,
-		commentContent: ''
+		commentContent: '',
+		commentsList: [],
+		commentLikeImage: '../../../images/like.jpg',
+		commentLikeCount: 0
 		// canvasHidden: false
 	},
 
@@ -55,8 +58,54 @@ Page({
 		}
 	},
 
-	send: function (e) {
+	onChange: function (e) {
 		console.log(e)
+		const that = this
+		let content = e.detail
+		that.setData({
+			commentContent: content
+		})
+	},
+
+	// 发表评论
+	send: function () {
+		let userInfo = wx.getStorageSync('userinfoLogs') || []
+		const that = this
+		if (userInfo.length !== 0) {
+			let userinfo = userInfo[0]
+			let articleId = that.data.articleInfo._id
+			let comments = that.data.articleInfo.comments + 1
+			let content = that.data.commentContent
+			// console.log('context', context)
+			wx.cloud.callFunction({
+				name: 'publishComment',
+				data: {
+					articleId: articleId,
+					comments: comments,
+					userId: userinfo._id,
+					username: userinfo.nickName,
+					avatar: userinfo.avatarUrl,
+					content: content,
+					commentLike: 0
+				}
+			}).then(res => {
+				that.setData({
+					commentContent: ''
+				})
+				// 更新评论列表
+				that.getCommentsList(articleId)
+				wx.showToast({
+					title: '发表成功'
+				})
+			})
+		} else {
+			wx.showToast({
+				title: '请登录'
+			})
+			wx.switchTab({
+				url: '/pages/me/me'
+			})
+		}
 	},
 
 	// onClickHide() {
@@ -345,12 +394,12 @@ Page({
 		})
 	},
 
-	previewImg(e) {
-		var e = e.currentTarget.dataset.img;
-		wx.previewImage({
-			urls: e.split(",")
-		});
-	},
+	// previewImg(e) {
+	// 	const e = e.currentTarget.dataset.img;
+	// 	wx.previewImage({
+	// 		urls: e.split(",")
+	// 	});
+	// },
 
 	goToArticle: function (e) {
 		console.log(e)
@@ -388,6 +437,72 @@ Page({
 				})
 			})
 		})
+	},
+
+	commentLike: function (e) {
+		console.log(e)
+		const that = this
+		const info = e.currentTarget.dataset.info
+		console.log(info)
+		const userInfo = wx.getStorageSync('userinfoLogs') || []
+		if (userInfo.length === 0) {
+			wx.showToast({
+				title: '请登录'
+			})
+			wx.switchTab({
+				url: '/pages/me/me'
+			})
+		} else {
+			let userId = userInfo[0]._id
+			const articleId = that.data.articleInfo._id
+		}
+
+
+		// let userId = ''
+		// let isLogin = false
+		// let userAvatar = ''
+		// if (userInfo.length !== 0) {
+		// 	userId = userInfo[0]._id
+		// 	userAvatar = userInfo[0].avatarUrl
+		// 	isLogin = true
+		// }
+		// console.log(userAvatar)
+		// // console.log(userId)
+		// // 先查数据库是否已经存在，若存在，则已点赞
+		// // 存在再进行操作则为取消点赞
+		// // 若不存在，则点赞，将信息存入数据库中
+		// wx.cloud.callFunction({
+		// 	name: 'checkLike',
+		// 	data: {
+		// 		userId: userId,
+		// 		articleId: articleId,
+		// 		userAvatar: userAvatar
+		// 	}
+		// }).then(res => {
+		// 	console.log(res)
+		// 	const msg = res.result.errMsg
+		// 	if (msg === 'collection.remove:ok') {
+		// 		// 点赞取消
+		// 		// 更新点赞人员
+		// 		// 更换点赞头像
+		// 		let likeImg = '../../../images/love.jpg'
+		// 		let isLike = false
+		// 		that.setData({
+		// 			likeImg: likeImg,
+		// 			isLike: isLike
+		// 		})
+		// 	} else {
+		// 		let likeImg = '../../../images/loved.jpg'
+		// 		let isLike = true
+		// 		that.setData({
+		// 			isLogin: isLogin,
+		// 			likeImg: likeImg,
+		// 			isLike: isLike
+		// 		})
+		// 	}
+		// 	that.getAvatarList(articleId)
+		// 	that.getArticleInfo(articleId)
+		// })
 	},
 
 	/**
@@ -431,6 +546,28 @@ Page({
 		that.getPrevNext(articleId)
 		that.getAvatarList(articleId)
 		that.randlikeList(articleId)
+		that.getCommentsList(articleId)
+	},
+
+	getCommentsList: function (articleId) {
+		const that = this
+		wx.showLoading({
+			title: '加载中...'
+		})
+		db.collection('comments').where({
+			articleId: articleId
+		}).get().then(res => {
+			console.log(res)
+			let commentsList = res.data
+			for (let i = 0; i < commentsList.length; i++) {
+				let time = formatTime.diffTime(commentsList[i].commentTime)
+				commentsList[i].commentTime = time
+			}
+			that.setData({
+				commentsList: commentsList
+			})
+			wx.hideLoading()
+		})
 	},
 
 	changeList: function (e) {

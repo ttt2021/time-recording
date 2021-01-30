@@ -22,6 +22,26 @@ const diffDays = function () {
   return days
 }
 
+// 计算时间差
+const diffTime = function (time) {
+  // 将时间转成毫秒数
+  const start = Date.parse(time)
+  const end = Date.parse(new Date())
+  let diff = 0
+  // 计算时间差
+  if ((end - start) < 1000 * 60) {
+    diff = Math.floor((end - start) / (1000 * 60))
+    return `${diff}分钟前`
+  } else if ((end - start) < 1000 * 60 * 60 * 24) {
+    diff = Math.floor((end - start) / (1000 * 60 * 60))
+    return `${diff}小时前`
+  } else {
+    diff = Math.floor((end - start) / (1000 * 60 * 60 * 24))
+    return `${diff}天前`
+  }
+  
+}
+
 // 将时间转成日期
 const dayDate = function (e) {
   const year = e.getFullYear()
@@ -144,6 +164,7 @@ module.exports = {
   currentMonths,
   prevMonths,
   curYearMonth,
-  getDaysOfMonth
+  getDaysOfMonth,
+  diffTime
   // drawTitleExcerpt
 }

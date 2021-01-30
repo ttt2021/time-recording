@@ -205,6 +205,7 @@
 						 clearable
 						 placeholder="评论......"
 						 border="{{false}}"
+						 bind:change="onChange"
 						>
 						</van-field>
 					</van-cell-group>
@@ -213,31 +214,60 @@
 					<van-button
 					 size="small"
 					 type="primary"
-					 bind:getuserinfo="send"
+					 color="#A5D63F"
+					 bind:click="send"
 					>发送
 					</van-button>
 				</view>
 			</view>
 		</view>
-		<view class="comment-count">有5条评论</view>
-		<view class="comment-content-wrapper">
-			<view class="comment-content">
+		<view class="comment-count">有{{articleInfo.comments}}条评论</view>
+		<view class="no-comment-wrapper" wx:if="{{articleInfo.comments === 0}}">
+			<view class="no-comment-tip">暂时还没有评论哦~~~</view>
+			<view class="no-comment-tip">赶紧来发表一下评论吧！！</view>
+		</view>
+		<view class="comment-content-wrapper" wx:if="{{articleInfo.comments !== 0}}">
+			<view
+			 class="comment-content"
+			 wx:for="{{commentsList}}"
+			 wx:key="index"
+			>
 				<view class="comment-userinfo">
 					<view class="user-info">
 						<view class="user-avatar">
-							<image
-							 class="userImg"
-							 src="../../../images/2.jpg"
-							 lazy-load="false"
-							/>
+							<view class="avatar">
+								<image
+								 class="userImg"
+								 src="{{item.avatarUrl}}"
+								 lazy-load="false"
+								/>
+							</view>
+							<view class="username">{{item.username}}</view>
 						</view>
-						<view class="username">御剑</view>
 					</view>
-					<view class="comment-time">2020-01-27</view>
+					<view class="username-like">
+						<view class="comment-time">{{item.commentTime}}</view>
+						<view
+						 class="comment-icon"
+						 bindtap="commentLike"
+						 data-info="{{item}}"
+						>
+							<view class="comment-like">
+								<image class="liked" src="../../../images/liked.jpg" />
+							</view>
+							<view class="liked-count">{{item.commentLike}}</view>
+						</view>
+					</view>
 				</view>
-				<view class="comment-message">sdandinffggggggggggggggggggggggbbbhbhbjiyfvvvvfdfcfvfsdfgyuhbhcrcvgbjdwbfwbeifb</view>
+				<view class="comment-message">{{item.content}}</view>
+				<view class="folding-wrapper">
+					<image
+					 class="flodIcon"
+					 src="../../../images/fold.jpg"
+					 lazy-load="true"
+					/>
+				</view>
 			</view>
-
 			<template is="endMore" wx:if="{{noMore}}"></template>
 		</view>
 	</view>

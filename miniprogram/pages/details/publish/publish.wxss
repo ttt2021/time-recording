@@ -132,7 +132,13 @@
   margin: 20rpx 0; 
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  /* position: relative; */
+}
+
+.input-wrapper {
+  width: 550rpx;
 }
 
 .wrapper button {
@@ -141,10 +147,17 @@
 }
 
 .send-button {
-  /* margin-top: -20rpx; */
   width: 120rpx;
   height: 88rpx;
-  right: 0;
+  /* right: 0; */
+  /* position: absolute; */
+}
+
+.no-comment-wrapper {
+  font-size: 32rpx;
+  text-align: center;
+  font-family: '楷体';
+  color: #8d8d8d;
 }
 
 .guess-list-container {
@@ -251,13 +264,23 @@
   margin-bottom: 10rpx;
 }
 
-.user-info {
+.comment-like {
+  margin: 0 15rpx 0 5rpx;
+}
+
+.username-like, .comment-icon, .user-info {
   display: flex;
   align-items: center;
+  font-size: 28rpx;
 }
 
 .username {
   margin-left: 10rpx;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
 }
 
 .userImg {
@@ -266,12 +289,28 @@
   border-radius: 50%;
 }
 
+.liked {
+  width: 40rpx;
+  height: 40rpx;
+}
+
 .comment-message {
   margin-left: 50rpx;
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre-wrap;
   line-height: 50rpx;
+}
+
+.folding-wrapper {
+  border-bottom: 1px solid #ffffff;
+  text-align: center;
+  /* margin-top: 20rpx; */
+}
+
+.flodIcon {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .footer-container {
