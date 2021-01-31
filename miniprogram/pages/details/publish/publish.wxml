@@ -227,47 +227,198 @@
 			<view class="no-comment-tip">赶紧来发表一下评论吧！！</view>
 		</view>
 		<view class="comment-content-wrapper" wx:if="{{articleInfo.comments !== 0}}">
-			<view
-			 class="comment-content"
-			 wx:for="{{commentsList}}"
-			 wx:key="index"
-			>
-				<view class="comment-userinfo">
-					<view class="user-info">
-						<view class="user-avatar">
-							<view class="avatar">
-								<image
-								 class="userImg"
-								 src="{{item.avatarUrl}}"
-								 lazy-load="false"
-								/>
-							</view>
-							<view class="username">{{item.username}}</view>
-						</view>
-					</view>
-					<view class="username-like">
-						<view class="comment-time">{{item.commentTime}}</view>
+			<block wx:for="{{commentsList}}" wx:key="index">
+				<block
+				 wx:for="{{item}}"
+				 wx:key="item_index"
+				 wx:for-item="items"
+				>
+					<view class="comment-content">
 						<view
-						 class="comment-icon"
-						 bindtap="commentLike"
-						 data-info="{{item}}"
+						 class="comment-parent-wrapper"
+						 bindtap="giveReply"
+						 data-commentInfo="{{items}}"
 						>
-							<view class="comment-like">
-								<image class="liked" src="../../../images/liked.jpg" />
+							<view class="comment-userinfo">
+								<view class="user-info">
+									<view class="user-avatar">
+										<view class="avatar">
+											<image
+											 class="userImg"
+											 src="{{items.avatarUrl}}"
+											 lazy-load="false"
+											/>
+										</view>
+										<view class="username">{{items.username}}</view>
+									</view>
+								</view>
+								<view class="username-like">
+									<view class="comment-time">{{items.commentTime}}</view>
+									<view
+									 class="comment-icon"
+									 bindtap="commentLike"
+									 data-info="{{items}}"
+									>
+										<view class="comment-like">
+											<image class="liked" src="{{commentLikeImage}}" />
+										</view>
+										<view class="liked-count">{{items.commentLike}}</view>
+									</view>
+								</view>
 							</view>
-							<view class="liked-count">{{item.commentLike}}</view>
+							<view class="comment-message">{{items.content}}</view>
+							<view class="write-show" wx:if="{{commentShow}}">
+								<view class="wrapper">
+									<view class="input-wrapper">
+										<van-cell-group>
+											<van-field
+											 value="{{commentContent}}"
+											 center
+											 clearable
+											 placeholder="评论......"
+											 border="{{false}}"
+											 bind:change="onChange"
+											>
+											</van-field>
+										</van-cell-group>
+									</view>
+									<view class="send-button">
+										<van-button
+										 size="small"
+										 type="primary"
+										 color="#A5D63F"
+										 bind:click="commentSend"
+										>发送
+										</van-button>
+									</view>
+								</view>
+							</view>
+						</view>
+
+						<!-- 回复 -->
+						<view class="reply-comment-list1-wrapper" wx:if="{{!items.isReply}}">
+							<!-- 回复一级 -->
+							<view class="reply-infoList1-wrapper">
+								<view
+								 class="reply-list1-container"
+								 wx:for="{{items.child}}"
+								 wx:key="itemId1"
+								 wx:for-item="item1"
+								>
+									<view class="list1-info-wrapper">
+										<view class="list1-userinfo">
+											<view class="list1-avatar">
+												<image
+												 class="list1Avatar"
+												 src="{{item1.avatarUrl}}"
+												 lazy-load="true"
+												/>
+											</view>
+											<view class="list1-username">{{item1.nickname}}</view>
+										</view>
+										<view class="list1-publishInfo">
+											<view class="list1-time">{{item1.commentTime}}</view>
+											<view class="list1-like">
+												<view class="list1-likeIcon">
+													<image class="list1LikeImg" src="../../../images/liked.jpg" />
+												</view>
+												<view class="list1-likeCount">{{item1.replyLike}}</view>
+											</view>
+										</view>
+									</view>
+									<view class="list1-content-wrapper">4646565dsccfcccccccccccccccc6</view>
+								</view>
+							</view>
+
+							<!-- 回复二级 -->
+							<view class="reply-infoList2-wrapper">
+								<view class="list1-info-wrapper">
+									<view class="list1-userinfo">
+										<view class="list1-avatar">
+											<image
+											 class="list1Avatar"
+											 src="../../../images/logo.jpg"
+											 lazy-load="true"
+											/>
+										</view>
+										<view class="list1-username">歆潼</view>
+									</view>
+									<view class="list1-publishInfo">
+										<view class="list1-time">5小时前</view>
+										<view class="list1-like">
+											<view class="list1-likeIcon">
+												<image class="list1LikeImg" src="../../../images/liked.jpg" />
+											</view>
+											<view class="list1-likeCount">5</view>
+										</view>
+									</view>
+								</view>
+								<view class="list1-content-wrapper">46465656</view>
+							</view>
+
+							<!-- 回复三级 -->
+							<view class="reply-infoList3-wrapper">
+								<view class="list1-info-wrapper">
+									<view class="list1-userinfo">
+										<view class="list1-avatar">
+											<image
+											 class="list1Avatar"
+											 src="../../../images/logo.jpg"
+											 lazy-load="true"
+											/>
+										</view>
+										<view class="list1-username">歆潼</view>
+									</view>
+									<view class="list1-publishInfo">
+										<view class="list1-time">5小时前</view>
+										<view class="list1-like">
+											<view class="list1-likeIcon">
+												<image class="list1LikeImg" src="../../../images/liked.jpg" />
+											</view>
+											<view class="list1-likeCount">5</view>
+										</view>
+									</view>
+								</view>
+								<view class="list1-content-wrapper">46465656</view>
+							</view>
+
+							<!-- 回复四级-->
+							<view class="reply-infoList4-wrapper">
+								<view class="list1-info-wrapper">
+									<view class="list1-userinfo">
+										<view class="list1-avatar">
+											<image
+											 class="list1Avatar"
+											 src="../../../images/logo.jpg"
+											 lazy-load="true"
+											/>
+										</view>
+										<view class="list1-username">歆潼</view>
+									</view>
+									<view class="list1-publishInfo">
+										<view class="list1-time">5小时前</view>
+										<view class="list1-like">
+											<view class="list1-likeIcon">
+												<image class="list1LikeImg" src="../../../images/liked.jpg" />
+											</view>
+											<view class="list1-likeCount">5</view>
+										</view>
+									</view>
+								</view>
+								<view class="list1-content-wrapper">46465656</view>
+							</view>
+						</view>
+
+						<view class="folding-wrapper" wx:if="{{item.isReply}}">
+							<image
+							 class="flodIcon"
+							 src="../../../images/fold.jpg"
+							 lazy-load="true"
+							/>
 						</view>
 					</view>
-				</view>
-				<view class="comment-message">{{item.content}}</view>
-				<view class="folding-wrapper">
-					<image
-					 class="flodIcon"
-					 src="../../../images/fold.jpg"
-					 lazy-load="true"
-					/>
-				</view>
-			</view>
+				</block>
+			</block>
 			<template is="endMore" wx:if="{{noMore}}"></template>
 		</view>
 	</view>

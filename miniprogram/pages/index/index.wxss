@@ -36,6 +36,22 @@
 .search-container {
   background: #eeeeee;
   padding: 15rpx;
+  position: relative;
+}
+
+.seachResult-wrapper {
+  position: absolute;
+  z-index: 888;
+  background: #dddddd;
+  /* border: 1px solid #000; */
+  padding: 0 15rpx;
+  width: 100%;
+  opacity: .6;
+  line-height: 60rpx;
+}
+
+.search-item {
+  border-bottom: 1px solid #ffffff;
 }
 
 .search-wrapper {

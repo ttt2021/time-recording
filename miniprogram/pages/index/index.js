@@ -2,6 +2,7 @@
 const app = getApp()
 const db = wx.cloud.database();
 const formatTime = require("../../utils/formatTime.js");
+const tool = require("../../utils/tool.js");
 Page({
 
 	/**
@@ -27,8 +28,42 @@ Page({
 		hasArticle: false,
 		noMore: false,
 		title: '',
-		isAdmin: false
+		isAdmin: false,
+		inputVal: '',
+		searchResult: []
 	},
+
+	keyInput: tool.debounce(function (e) {
+		const that = this
+		// console.log(e)
+		let seachInfo = e[0].detail.value
+		console.log(seachInfo)
+		that.setData({
+			inputVal: seachInfo,
+			showSearch: true
+		})
+	}),
+
+	search: tool.throttle(function (value) {
+		const that = this
+		let searchInfo = that.data.inputVal
+		console.log(searchInfo)
+		db.collection('articles').where({
+			title: db.RegExp({
+				regexp: searchInfo,
+				options: 'is'
+			}),
+			isPublish: "1"
+		}).get({
+			success: res => {
+				console.log(res)
+				let searchResult = res.data
+				that.setData({
+					searchResult: searchResult
+				})
+			}
+		})
+	}),
 
 	goDetail: function (e) {
 		console.log(e)

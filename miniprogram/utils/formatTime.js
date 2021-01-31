@@ -29,7 +29,7 @@ const diffTime = function (time) {
   const end = Date.parse(new Date())
   let diff = 0
   // 计算时间差
-  if ((end - start) < 1000 * 60) {
+  if ((end - start) < 1000 * 60 * 60) {
     diff = Math.floor((end - start) / (1000 * 60))
     return `${diff}分钟前`
   } else if ((end - start) < 1000 * 60 * 60 * 24) {

@@ -2,6 +2,7 @@
 const db = wx.cloud.database();
 const app = getApp()
 const formatTime = require("../../../utils/formatTime.js");
+const tool = require("../../../utils/tool.js");
 // const QR = require("../../../utils/qrcode.js");
 Page({
 
@@ -28,11 +29,27 @@ Page({
 		likeInfo: [],
 		show: false,
 		commentContent: '',
-		commentsList: [],
-		commentLikeImage: '../../../images/like.jpg',
-		commentLikeCount: 0
+		commentsList: [[]],
+		commentPage: 0,
+		commentLikeImage: '../../../images/liked.jpg',
+		commentLikeCount: 0,
+		isCommentLike: false,
+		commentShow: false,
+		commentInfo: {},
+		allComments: []
 		// canvasHidden: false
 	},
+
+	giveReply: tool.throttle(function (e) {
+		const that = this
+		console.log(e)
+		let commentInfo = e[0].currentTarget.dataset.commentinfo
+		console.log(commentInfo)
+		that.setData({
+			commentShow: true,
+			commentInfo: commentInfo
+		})
+	}, 3000),
 
 	onClickShow() {
 		let userInfo = wx.getStorageSync('userinfoLogs') || []
@@ -67,6 +84,54 @@ Page({
 		})
 	},
 
+	// 评论回复
+	commentSend: function () {
+		let userInfo = wx.getStorageSync('userinfoLogs') || []
+		const that = this
+		if (userInfo.length !== 0) {
+			let commentId = that.data.commentInfo._id	// 回复评论id
+			let userinfo = userInfo[0]
+			let articleId = that.data.articleInfo._id // 文章id
+			let comments = that.data.articleInfo.comments + 1
+			let content = that.data.commentContent
+			wx.cloud.callFunction({
+				name: 'publishReply',
+				data: {
+					commentId: commentId,
+					articleId: articleId,
+					comments: comments,
+					userId: userinfo._id,
+					username: userinfo.nickName,
+					avatar: userinfo.avatarUrl,
+					content: content,
+					replyLike: 0
+				}
+			}).then(res => {
+				console.log(res)
+				that.setData({
+					commentContent: '',
+					commentShow: false
+				})
+				// 	let options = {
+				// 		id: articleId
+				// 	}
+				// 	// // 更新评论列表
+				// 	// that.getCommentsList(articleId)
+				// 	that.onLoad(options)
+				// 	wx.showToast({
+				// 		title: '发表成功'
+				// 	})
+			})
+		} else {
+			wx.showToast({
+				title: '请登录'
+			})
+			wx.switchTab({
+				url: '/pages/me/me'
+			})
+		}
+	},
+
 	// 发表评论
 	send: function () {
 		let userInfo = wx.getStorageSync('userinfoLogs') || []
@@ -92,8 +157,12 @@ Page({
 				that.setData({
 					commentContent: ''
 				})
-				// 更新评论列表
-				that.getCommentsList(articleId)
+				let options = {
+					id: articleId
+				}
+				// // 更新评论列表
+				// that.getCommentsList(articleId)
+				that.onLoad(options)
 				wx.showToast({
 					title: '发表成功'
 				})
@@ -453,56 +522,39 @@ Page({
 				url: '/pages/me/me'
 			})
 		} else {
+			// 点赞者
 			let userId = userInfo[0]._id
-			const articleId = that.data.articleInfo._id
+			// 点赞评论id
+			const commentId = info._id
+			wx.cloud.callFunction({
+				name: 'addComment',
+				data: {
+					userId: userId,
+					commentId: commentId
+				}
+			}).then(res => {
+				console.log(res)
+				// const msg = res.result.errMsg
+				// if (msg === 'collection.remove:ok') {
+				// 	let likeImg = '../../../images/liked.jpg'
+				// 	let isLike = false
+				// 	that.setData({
+				// 		commentLikeImg: likeImg,
+				// 		iscommentLike: isLike
+				// 	})
+				// } else {
+				// 	let likeImg = '../../../images/userLiked.jpg'
+				// 	let isLike = true
+				// 	that.setData({
+				// 		commentLikeImg: likeImg,
+				// 		iscommentLike: isLike
+				// 	})
+				// }
+				let articleId = info.articleId
+				// 更新评论列表
+				that.getCommentsList(articleId)
+			})
 		}
-
-
-		// let userId = ''
-		// let isLogin = false
-		// let userAvatar = ''
-		// if (userInfo.length !== 0) {
-		// 	userId = userInfo[0]._id
-		// 	userAvatar = userInfo[0].avatarUrl
-		// 	isLogin = true
-		// }
-		// console.log(userAvatar)
-		// // console.log(userId)
-		// // 先查数据库是否已经存在，若存在，则已点赞
-		// // 存在再进行操作则为取消点赞
-		// // 若不存在，则点赞，将信息存入数据库中
-		// wx.cloud.callFunction({
-		// 	name: 'checkLike',
-		// 	data: {
-		// 		userId: userId,
-		// 		articleId: articleId,
-		// 		userAvatar: userAvatar
-		// 	}
-		// }).then(res => {
-		// 	console.log(res)
-		// 	const msg = res.result.errMsg
-		// 	if (msg === 'collection.remove:ok') {
-		// 		// 点赞取消
-		// 		// 更新点赞人员
-		// 		// 更换点赞头像
-		// 		let likeImg = '../../../images/love.jpg'
-		// 		let isLike = false
-		// 		that.setData({
-		// 			likeImg: likeImg,
-		// 			isLike: isLike
-		// 		})
-		// 	} else {
-		// 		let likeImg = '../../../images/loved.jpg'
-		// 		let isLike = true
-		// 		that.setData({
-		// 			isLogin: isLogin,
-		// 			likeImg: likeImg,
-		// 			isLike: isLike
-		// 		})
-		// 	}
-		// 	that.getAvatarList(articleId)
-		// 	that.getArticleInfo(articleId)
-		// })
 	},
 
 	/**
@@ -556,15 +608,44 @@ Page({
 		})
 		db.collection('comments').where({
 			articleId: articleId
-		}).get().then(res => {
+		}).orderBy('commentTime', 'desc').orderBy('userId', 'asc').limit(5).get().then(res => {
 			console.log(res)
 			let commentsList = res.data
+			console.log(commentsList)
 			for (let i = 0; i < commentsList.length; i++) {
 				let time = formatTime.diffTime(commentsList[i].commentTime)
 				commentsList[i].commentTime = time
+				let commentId = commentsList[i]._id
+				db.collection('replys').where({
+					articleId: articleId,
+					commentId: commentId
+				}).get().then(replyRes => {
+					console.log(replyRes)
+					if (replyRes.data.length === 0) {
+						commentsList[i].isReply = false
+					} else {
+						commentsList[i].isReply = true
+						wx.cloud.callFunction({
+							name: 'getReplayList',
+							data: {
+								commentinfo: commentsList[i]
+							}
+						}).then(res => {
+							console.log(res)
+							if (res.result.length !== 0) {
+								commentsList[i].child = res.result
+								console.log(commentsList)
+							}
+						})
+					}
+				})
 			}
+			let allComments = commentsList
+			console.log(commentsList)
 			that.setData({
-				commentsList: commentsList
+				commentPage: 0,
+				["commentsList[0]"]: commentsList,
+				allComments: allComments
 			})
 			wx.hideLoading()
 		})
@@ -695,7 +776,66 @@ Page({
 	 * 页面上拉触底事件的处理函数
 	 */
 	onReachBottom: function () {
+		const that = this
+		that.loadingMore()
+	},
 
+	loadingMore: function () {
+		const that = this
+		let articleId = that.data.articleInfo._id
+		wx.showLoading({
+			title: '加载中...'
+		})
+		let commentPage = that.data.commentPage + 5
+		// 跳过前面page条，从page+1条开始返回 限制返回5条数据
+		db.collection('comments').where({
+			articleId: articleId
+		}).orderBy('commentTime', 'desc').orderBy('userId', 'asc').skip(commentPage).limit(5).get().then(res => {
+			console.log(res)
+			let commentsList = res.data
+			wx.hideLoading()
+			if (res.data.length === 0) {
+				that.setData({
+					noMore: true
+				})
+				return
+			}
+			for (let i = 0; i < commentsList.length; i++) {
+				let time = formatTime.diffTime(commentsList[i].commentTime)
+				commentsList[i].commentTime = time
+				let commentId = commentsList[i]._id
+				db.collection('replys').where({
+					articleId: articleId,
+					commentId: commentId
+				}).get().then(replyRes => {
+					console.log(replyRes)
+					if (replyRes.data.length === 0) {
+						commentsList[i].isReply = false
+					} else {
+						commentsList[i].isReply = true
+						wx.cloud.callFunction({
+							name: 'getReplayList',
+							data: {
+								commentinfo: commentsList[i]
+							}
+						}).then(res => {
+							console.log(res)
+							if (res.result.length !== 0) {
+								commentsList[i].child = res.result
+								console.log(commentsList[i])
+							}
+						})
+					}
+				})
+			}
+			let allComments = that.data.allComments.concat(commentsList)
+			that.setData({
+				commentPage: commentPage,
+				["commentsList[" + commentPage + "]"]: commentsList,
+				allComments: allComments
+			})
+			wx.hideLoading()
+		})
 	},
 
 	/**

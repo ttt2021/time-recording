@@ -7,42 +7,41 @@ const db = cloud.database({ env })
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-	const checkLike = await db.collection('likes').where({
-		userId: event.userId,
-		articleId: event.articleId
+	const checkLike = await db.collection('commentsLike').where({
+		commentId: event.commentId,
+		userId: event.userId
 	}).get()
 	// return checkLike
-	const getInfo = await db.collection('articles').where({
-		_id: event.articleId
+	const getInfo = await db.collection('comments').where({
+		_id: event.commentId
 	}).get()
-	let likes = getInfo.data[0].likes
+	let likes = getInfo.data[0].commentLike
 
 	if (checkLike.data.length > 0) {
-		const reduceUpdated = await db.collection('articles').where({
-			_id: event.articleId
+		const reduceUpdated = await db.collection('comments').where({
+			_id: event.commentId
 		}).update({
 			data: {
-				likes: likes - 1
+				commentLike: likes - 1
 			}
 		})
-		const removeResult = await db.collection('likes').where({
-			userId: event.userId,
-			articleId: event.articleId
+		const removeResult = await db.collection('commentsLike').where({
+			commentId: event.commentId,
+			userId: event.userId
 		}).remove()
 		return removeResult
 	} else {
-		const updated = await db.collection('articles').where({
-			_id: event.articleId
+		const updated = await db.collection('comments').where({
+			_id: event.commentId
 		}).update({
 			data: {
-				likes: likes + 1
+				commentLike: likes + 1
 			}
 		})
-		const result = await db.collection('likes').add({
+		const result = await db.collection('commentsLike').add({
 			data: {
 				userId: event.userId,
-				articleId: event.articleId,
-				userAvatar: event.userAvatar,
+				commentId: event.commentId,
 				likeTime: new Date()
 			}
 		})

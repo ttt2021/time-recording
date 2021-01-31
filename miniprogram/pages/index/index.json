@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "articleInfo": "/components/articleInfo/articleInfo"
+    "articleInfo": "/components/articleInfo/articleInfo",
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"

@@ -55,6 +55,22 @@
 			</view>
 		</view>
 
+		<view class="seachResult-wrapper" wx:if="{{showSearch}}">
+			<view
+			 class="search-item"
+			 wx:for="{{searchResult}}"
+			 wx:key="id"
+			>
+				<view
+				 class="show-search"
+				 bindtap="goSearchPage"
+				 data-info="{{item}}"
+				>{{item.title}}
+				</view>
+			</view>
+			<view class="search-item" wx:if="{{searchResult.length === 0}}">无搜索内容~~~</view>
+		</view>
+
 		<!-- 公告 -->
 		<view class="notice-container">
 			<swiper
