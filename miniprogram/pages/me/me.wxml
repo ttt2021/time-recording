@@ -100,7 +100,7 @@
 		<template
 		 is="menuItem"
 		 data="{{item: menuItems.admin, arrowSrc: arrowSrc}}"
-		 wx:if="{{!userInfo.isAdmin}}"
+		 wx:if="{{userInfo.isAdmin}}"
 		></template>
 	</view>
 
