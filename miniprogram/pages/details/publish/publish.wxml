@@ -326,86 +326,101 @@
 											</view>
 										</view>
 									</view>
-									<view class="list1-content-wrapper">4646565dsccfcccccccccccccccc6</view>
+									<view class="list1-content-wrapper">{{item1.content}}</view>
 								</view>
 							</view>
 
 							<!-- 回复二级 -->
-							<view class="reply-infoList2-wrapper">
+							<view
+							 class="reply-infoList2-wrapper"
+							 wx:for="{{item1.child}}"
+							 wx:key="itemId2"
+							 wx:for-item="item2"
+							>
 								<view class="list1-info-wrapper">
 									<view class="list1-userinfo">
 										<view class="list1-avatar">
 											<image
 											 class="list1Avatar"
-											 src="../../../images/logo.jpg"
+											 src="{{item2.avatarUrl}}"
 											 lazy-load="true"
 											/>
 										</view>
-										<view class="list1-username">歆潼</view>
+										<view class="list1-username">{{item2.nickname}}</view>
 									</view>
 									<view class="list1-publishInfo">
-										<view class="list1-time">5小时前</view>
+										<view class="list1-time">{{item2.commentTime}}</view>
 										<view class="list1-like">
 											<view class="list1-likeIcon">
 												<image class="list1LikeImg" src="../../../images/liked.jpg" />
 											</view>
-											<view class="list1-likeCount">5</view>
+											<view class="list1-likeCount">{{item2.replyLike}}</view>
 										</view>
 									</view>
 								</view>
-								<view class="list1-content-wrapper">46465656</view>
+								<view class="list1-content-wrapper">{{item2.content}}</view>
 							</view>
 
 							<!-- 回复三级 -->
-							<view class="reply-infoList3-wrapper">
+							<view
+							 class="reply-infoList3-wrapper"
+							 wx:for="{{item2.child}}"
+							 wx:key="itemId3"
+							 wx:for-item="item3"
+							>
 								<view class="list1-info-wrapper">
 									<view class="list1-userinfo">
 										<view class="list1-avatar">
 											<image
 											 class="list1Avatar"
-											 src="../../../images/logo.jpg"
+											 src="{{item3.avatarUrl}}"
 											 lazy-load="true"
 											/>
 										</view>
-										<view class="list1-username">歆潼</view>
+										<view class="list1-username">{{item3.nickname}}</view>
 									</view>
 									<view class="list1-publishInfo">
-										<view class="list1-time">5小时前</view>
+										<view class="list1-time">{{item3.commentTime}}</view>
 										<view class="list1-like">
 											<view class="list1-likeIcon">
 												<image class="list1LikeImg" src="../../../images/liked.jpg" />
 											</view>
-											<view class="list1-likeCount">5</view>
+											<view class="list1-likeCount">{{item3.replyLike}}</view>
 										</view>
 									</view>
 								</view>
-								<view class="list1-content-wrapper">46465656</view>
+								<view class="list1-content-wrapper">{{item3.content}}</view>
 							</view>
 
 							<!-- 回复四级-->
-							<view class="reply-infoList4-wrapper">
+							<view
+							 class="reply-infoList4-wrapper"
+							 wx:for="{{item3.child}}"
+							 wx:key="itemId4"
+							 wx:for-item="item4"
+							>
 								<view class="list1-info-wrapper">
 									<view class="list1-userinfo">
 										<view class="list1-avatar">
 											<image
 											 class="list1Avatar"
-											 src="../../../images/logo.jpg"
+											 src="{{item4.avatarUrl}}"
 											 lazy-load="true"
 											/>
 										</view>
-										<view class="list1-username">歆潼</view>
+										<view class="list1-username">{{item4.nickname}}</view>
 									</view>
 									<view class="list1-publishInfo">
-										<view class="list1-time">5小时前</view>
+										<view class="list1-time">{{item4.commentTime}}</view>
 										<view class="list1-like">
 											<view class="list1-likeIcon">
 												<image class="list1LikeImg" src="../../../images/liked.jpg" />
 											</view>
-											<view class="list1-likeCount">5</view>
+											<view class="list1-likeCount">{{item4.replyTime}}</view>
 										</view>
 									</view>
 								</view>
-								<view class="list1-content-wrapper">46465656</view>
+								<view class="list1-content-wrapper">{{item4.content}}</view>
 							</view>
 						</view>
 
